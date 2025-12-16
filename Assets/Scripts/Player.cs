@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
     bool jump;
 
     bool isJump;
+    bool isDodge;
 
     Vector3 move;
+    Vector3 dodge;
 
     Rigidbody rigid;
     Animator anim;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Dodge();
     }
 
     public void GetInput() // 키보드 입력
@@ -44,6 +47,11 @@ public class Player : MonoBehaviour
     public void Move() //움직이는 함수
     {
         move = new Vector3(moneX, 0, moveZ).normalized;
+
+        if (isDodge)
+        {
+            move = dodge;
+        }
 
         transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
 
@@ -67,13 +75,33 @@ public class Player : MonoBehaviour
     public void Jump() //점프
     {
 
-        if (jump && !isJump)
+        if (jump && !Run && !isJump && !isDodge) //제자리에서 점프
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             anim.SetBool("isJump", true);
             anim.SetTrigger("doJump");
             isJump = true;
         }
+    }
+
+    public void Dodge() //회피
+    {
+
+        if (jump && move != Vector3.zero && Run && !isJump && !isDodge) //움직이며 점프
+        {
+            dodge = move;
+            speed *= 2f;
+            anim.SetTrigger("doDodge");
+            isDodge = true;
+
+            Invoke("DodgeOut", 0.6f);
+        }
+    }
+
+    void DodgeOut() //회피에서 원 상태로
+    {
+        speed *= 0.5f;
+        isDodge = false;
     }
 
     void OnCollisionEnter(Collision collision)
