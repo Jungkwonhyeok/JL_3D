@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     bool isJump;
     bool isDodge;
+    bool isTouch;
 
     Vector3 move;
     Vector3 dodge;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
         if (isDodge)
         {
             move = dodge;
+
         }
 
         transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
