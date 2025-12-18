@@ -6,15 +6,18 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float jumpPower;
+    public GameObject[] weapons;
+    public bool[] hasWeapons;
 
     float moneX;
     float moveZ;
+
     bool Run;
     bool jump;
+    bool interation;
 
     bool isJump;
     bool isDodge;
-    bool isTouch;
 
     Vector3 move;
     Vector3 dodge;
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     Animator anim;
 
+    GameObject nearObject;
     public void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
         Turn();
         Jump();
         Dodge();
+        Interation();
     }
 
     public void GetInput() // 키보드 입력
@@ -42,7 +47,7 @@ public class Player : MonoBehaviour
         moveZ = Input.GetAxis("Vertical");
         Run = Input.GetButton("Run");
         jump = Input.GetButton("Jump");
-
+        interation = Input.GetButton("Interation");
     }
 
     public void Move() //움직이는 함수
@@ -106,6 +111,21 @@ public class Player : MonoBehaviour
         isDodge = false;
     }
 
+    void Interation()
+    {
+        if(interation && nearObject != null && !isJump)
+        {
+            if(nearObject.tag == "Weapon")
+            {
+                Item item = nearObject.GetComponent<Item>();
+                int weaponIndex = item.value;
+                hasWeapons[weaponIndex] = true;
+
+                Destroy(nearObject);
+            }
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Floor")
@@ -113,5 +133,17 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", false);
             isJump = false;
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Weapon")
+            nearObject = other.gameObject;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Weapon")
+            nearObject = null;
     }
 }

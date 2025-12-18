@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 975823841054331241}
   m_Layer: 0
   m_Name: Spellbook
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4893,7 +4893,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!135 &3536892327143639671
 SphereCollider:
@@ -4950,7 +4950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  value: 0
+  value: 4
 --- !u!1 &8924918830556081689
 GameObject:
   m_ObjectHideFlags: 0
