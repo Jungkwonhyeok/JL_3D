@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doDodge");
             isDodge = true;
 
-            Invoke("DodgeOut", 0.6f);
+            Invoke("DodgeOut", 0.6f); //0.6초 뒤 원상복귀
         }
     }
 
@@ -111,15 +111,15 @@ public class Player : MonoBehaviour
         isDodge = false;
     }
 
-    void Interation()
+    void Interation() //상호작용
     {
         if(interation && nearObject != null && !isJump)
         {
             if(nearObject.tag == "Weapon")
             {
                 Item item = nearObject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
+                int weaponIndex = item.value; //아이템 value값을 무기 인덱스로 저장
+                hasWeapons[weaponIndex] = true; //무기 보유중인지 여부
 
                 Destroy(nearObject);
             }
@@ -138,12 +138,12 @@ public class Player : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         if(other.tag == "Weapon")
-            nearObject = other.gameObject;
+            nearObject = other.gameObject; //가까이 가면 nearobj에 아이템 obj를  저장
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Weapon")
-            nearObject = null;
+            nearObject = null; //멀어지면 nearobj를 비움
     }
 }
