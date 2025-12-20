@@ -697,9 +697,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4334283683360074158}
-  - component: {fileID: 7557143115685107642}
-  - component: {fileID: 3422370638015758180}
-  - component: {fileID: -3304089245344292814}
   - component: {fileID: 665592152467182191}
   m_Layer: 0
   m_Name: Rogue_Hooded
@@ -716,9 +713,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3994033881316766484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 640718722127848695}
@@ -731,73 +728,7 @@ Transform:
   - {fileID: 2288579243225911766}
   - {fileID: 485993861472850087}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &7557143115685107642
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3994033881316766484}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &3422370638015758180
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3994033881316766484}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 1
---- !u!114 &-3304089245344292814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3994033881316766484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d70128fc83d253144a7a4108ae8774d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  jumpPower: 10
-  weapons: []
-  hasWeapons: 0000000000
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &665592152467182191
 Animator:
   serializedVersion: 5
@@ -1906,6 +1837,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: crossbow_1handed
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1971,6 +1910,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
       propertyPath: m_Name
       value: crossbow_2handed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2119,6 +2066,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
       propertyPath: m_Name
       value: dagger
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
