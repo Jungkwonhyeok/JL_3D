@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
 
     // 기사 = 0 , 도적 = 1, 궁수 = 2, 바바리안 = 3, 마법사 = 4
     public HeroChange HeroChanges;
+    public int SaveitemValue;
+
     public void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -163,16 +165,46 @@ public class Player : MonoBehaviour
             return;
 
         int weaponIndex = -1; //배열은 0부터 시작하므로 -1 할당
-        if (swap1)
+
+        if(SaveitemValue == 0)
         {
-            weaponIndex = 0;
-            equipWeaponIndex = 0;
+            if (swap1)
+            {
+                weaponIndex = 0;
+                equipWeaponIndex = 0;
+            }
+            if (swap2)
+            {
+                weaponIndex = 3;
+                equipWeaponIndex = 1;
+            }
         }
-        if (swap2)
+        else if (SaveitemValue == 2 || SaveitemValue == 4)
         {
-            weaponIndex = 1;
-            equipWeaponIndex = 1;
+            if (swap1)
+            {
+                weaponIndex = 0;
+                equipWeaponIndex = 0;
+            }
+            if (swap2)
+            {
+                return;
+            }
         }
+        else
+        {
+            if (swap1)
+            {
+                weaponIndex = 0;
+                equipWeaponIndex = 0;
+            }
+            if (swap2)
+            {
+                weaponIndex = 2;
+                equipWeaponIndex = 1;
+            }
+        }
+        
 
         if ((swap1 || swap2) && !isJump && !isDodge) //점프, 회피 중에는 무기 교체 불가
         {
@@ -200,7 +232,7 @@ public class Player : MonoBehaviour
         isSwap = false;
     }
 
-    void Interation() //상호작용
+    void Interation() //상호작용(아이템 먹음)
     {
         if(interation && nearObject != null && !isJump)
         {
@@ -213,7 +245,10 @@ public class Player : MonoBehaviour
                 {
                     hasWeapons[i] = false;
                 }
-                    hasWeapons[weaponIndex] = true; //먹은 아이템 활성화
+
+                hasWeapons[weaponIndex] = true; //먹은 아이템 활성화
+
+                SaveitemValue = weaponIndex;
 
                 Destroy(nearObject); //아이템 obj 삭제
 
@@ -243,6 +278,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Weapon")
             nearObject = null; //멀어지면 nearobj를 비움
+        
     }
 
     public void HeroChange(int num) //바꿀 캐릭터 저장해주는 함수
