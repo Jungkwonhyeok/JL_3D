@@ -166,39 +166,39 @@ public class Player : MonoBehaviour
 
         int weaponIndex = -1; //배열은 0부터 시작하므로 -1 할당
 
-        if(SaveitemValue == 0)
+        if(SaveitemValue == 0) //기사 무기 설정 값
         {
-            if (swap1)
+            if (swap1 && !isJump && !isDodge)
             {
                 weaponIndex = 0;
                 equipWeaponIndex = 0;
             }
-            if (swap2)
+            if (swap2 && !isJump && !isDodge)
             {
                 weaponIndex = 3;
                 equipWeaponIndex = 1;
             }
         }
-        else if (SaveitemValue == 2 || SaveitemValue == 4)
+        else if (SaveitemValue == 2 || SaveitemValue == 4) //궁수, 마법사 무기 설정 값
         {
-            if (swap1)
+            if (swap1 && !isJump && !isDodge)
             {
                 weaponIndex = 0;
                 equipWeaponIndex = 0;
             }
-            if (swap2)
+            if (swap2 && !isJump && !isDodge)
             {
                 return;
             }
         }
-        else
+        else //도적, 바바리안 무기 설정 값
         {
-            if (swap1)
+            if (swap1 && !isJump && !isDodge)
             {
                 weaponIndex = 0;
                 equipWeaponIndex = 0;
             }
-            if (swap2)
+            if (swap2 && !isJump && !isDodge)
             {
                 weaponIndex = 2;
                 equipWeaponIndex = 1;
@@ -248,7 +248,7 @@ public class Player : MonoBehaviour
 
                 hasWeapons[weaponIndex] = true; //먹은 아이템 활성화
 
-                SaveitemValue = weaponIndex;
+                SaveitemValue = weaponIndex; //먹은 아이템 Value값 저장
 
                 Destroy(nearObject); //아이템 obj 삭제
 
