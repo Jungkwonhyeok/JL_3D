@@ -18,12 +18,12 @@ public class Player : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
-    public int ammo;
-    public int coin;
-    public int health;
-    public int maxAmmo;
-    public int maxCoin;
-    public int maxHealth;
+    public int ammo; //화살 개수
+    public int coin; //코인 개수
+    public int health; //체력
+    public int maxAmmo; //최대 화살 수
+    public int maxCoin; //최대 코인 수
+    public int maxHealth; //최대 체력
 
     float moneX;
     float moveZ;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     bool isJump;
     bool isDodge;
     bool isSwap;
-    bool isFireReady;
+    bool isFireReady = true;
 
     Vector3 move;
     Vector3 dodge;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (isSwap) //움직이며 점프, 무기 전환 시 행동 불가
+        if (isSwap || !isFireReady) //움직이며 점프, 무기 전환, 공격 중 일시 행동 불가
             move = Vector3.zero;
 
         transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
@@ -149,15 +149,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Attack()
+    void Attack() //공격 하는 함수
     {
-        if (equipWeapon == null)
+        if (equipWeapon == null) //무기를 들고 있지 않으면 return
             return;
 
-        fireDelay += Time.deltaTime;
-        isFireReady = equipWeapon.rate < fireDelay;
+        fireDelay += Time.deltaTime; //공격 키를 느르고 얼마나 지났는지 값을 입력
+        isFireReady = equipWeapon.rate < fireDelay; //공격 딜레이 < 공격 후 지난 시간 으로 공격 가능 여부 확인
 
-        if (fire1 && isFireReady && !isDodge && !isSwap)
+        if (fire1 && isFireReady && !isDodge && !isSwap) //공격이 가능 하고, 회피, 무기 교체 상태가 아닐 시 공격
         {
             equipWeapon.Use();
             anim.SetTrigger("doSwing");
@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
                 }
                 if (swap2 && !isJump && !isDodge)
                 {
-                    weaponIndex = 2;
+                    weaponIndex = 3;
                     equipWeaponIndex = 1;
                 }
                 break;
@@ -267,7 +267,7 @@ public class Player : MonoBehaviour
                 render.GetComponentInChildren<Renderer>().enabled = false; //전에 들고 있던 무기 비활성화
             }
 
-            equipWeapon = weapons[weaponIndex].GetComponent<Weapon>(); //현재 들고있는 무기Index값 저장
+            equipWeapon = weapons[weaponIndex].GetComponentInChildren<Weapon>(); //현재 들고있는 무기Index값 저장
 
             render = equipWeapon.GetComponentInChildren<Renderer>();
             render.GetComponentInChildren<Renderer>().enabled = true; //Swap에 따른 무기 활성화
@@ -325,26 +325,26 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Item")
         {
-            Item item = other.GetComponent<Item>();
+            Item item = other.GetComponent<Item>(); //가까이 가면 tag가 Item인 아이템 먹음
             switch (item.type)
             {
-                case Item.Type.Ammo:
+                case Item.Type.Ammo: //타입이 Ammo이면 화살 개수에 아이템(ammo) 값 더해줌, MAX 값이면 그대로 유지
                     ammo += item.value;
                     if (ammo > maxAmmo)
                         ammo = maxAmmo;
                     break;
-                case Item.Type.Coin:
+                case Item.Type.Coin: //타입이 Coin이면 코인 개수에 아이템(coin) 값 더해줌, MAX 값이면 그대로 유지
                     coin += item.value;
                     if (coin > maxCoin)
                         coin = maxCoin;
                     break;
-                case Item.Type.Heart:
+                case Item.Type.Heart: //타입이 Heart이면 체력에 아이템(health) 값 더해줌, MAX 값이면 그대로 유지
                     health += item.value;
                     if (health > maxHealth)
                         health = maxHealth;
                     break;
             }
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); //먹은 obj는 삭제
         }
     }
 
