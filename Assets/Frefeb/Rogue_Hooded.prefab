@@ -1848,13 +1848,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6821394159453016643}
   m_SourcePrefab: {fileID: 100100000, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
 --- !u!4 &2811572965892350702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
   m_PrefabInstance: {fileID: 2345829816880039173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3192882930446415956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f534c272c9302ca4b9d854f606ca34f2, type: 3}
+  m_PrefabInstance: {fileID: 2345829816880039173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6821394159453016643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192882930446415956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  damage: 0
+  rate: 0
+  meleeArea: {fileID: 0}
+  trailEffect: {fileID: 0}
 --- !u!1001 &7135103341161206887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1922,13 +1947,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4915805483799420514}
   m_SourcePrefab: {fileID: 100100000, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
 --- !u!4 &7245803419894592396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
   m_PrefabInstance: {fileID: 7135103341161206887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8054005680439355702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0ef062b8c21888645b13e01892d0fb5b, type: 3}
+  m_PrefabInstance: {fileID: 7135103341161206887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4915805483799420514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054005680439355702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  damage: 0
+  rate: 0
+  meleeArea: {fileID: 0}
+  trailEffect: {fileID: 0}
 --- !u!1001 &7561494727862797204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2078,10 +2128,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6035303810769299943}
   m_SourcePrefab: {fileID: 100100000, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
 --- !u!4 &8131230623652717749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
   m_PrefabInstance: {fileID: 8601125793720189790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8907064013547470351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 85c2d7c3e9c36d24287f37e2c5d16bff, type: 3}
+  m_PrefabInstance: {fileID: 8601125793720189790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6035303810769299943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907064013547470351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  damage: 0
+  rate: 0
+  meleeArea: {fileID: 0}
+  trailEffect: {fileID: 0}

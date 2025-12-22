@@ -21,12 +21,16 @@ public class Player : MonoBehaviour
     public int ammo;
     public int coin;
     public int health;
+    public int maxAmmo;
+    public int maxCoin;
+    public int maxHealth;
 
     float moneX;
     float moveZ;
 
     bool Run;
     bool jump;
+    bool fire1;
     bool interation;
     bool swap1;
     bool swap2;
@@ -34,17 +38,19 @@ public class Player : MonoBehaviour
     bool isJump;
     bool isDodge;
     bool isSwap;
+    bool isFireReady;
 
     Vector3 move;
     Vector3 dodge;
 
-    public Rigidbody rigid;
-    public Animator anim;
+    Rigidbody rigid;
+    Animator anim;
 
     GameObject nearObject;
-    GameObject equipWeapon;
+    Weapon equipWeapon;
     Renderer render;
     int equipWeaponIndex = -1;
+    float fireDelay;
 
     // 기사 = 0 , 도적 = 1, 궁수 = 2, 바바리안 = 3, 마법사 = 4
     public HeroChange HeroChanges;
@@ -64,6 +70,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Attack();
         Dodge();
         Swap();
         Interation();
@@ -89,6 +96,7 @@ public class Player : MonoBehaviour
         moveZ = Input.GetAxis("Vertical");
         Run = Input.GetButton("Run");
         jump = Input.GetButtonDown("Jump");
+        fire1 = Input.GetButtonDown("Fire1");
         interation = Input.GetButtonDown("Interation");
         swap1 = Input.GetButtonDown("Swap1");
         swap2 = Input.GetButtonDown("Swap2");
@@ -138,6 +146,22 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", true);
             anim.SetTrigger("doJump");
             isJump = true;
+        }
+    }
+
+    void Attack()
+    {
+        if (equipWeapon == null)
+            return;
+
+        fireDelay += Time.deltaTime;
+        isFireReady = equipWeapon.rate < fireDelay;
+
+        if (fire1 && isFireReady && !isDodge && !isSwap)
+        {
+            equipWeapon.Use();
+            anim.SetTrigger("doSwing");
+            fireDelay = 0;
         }
     }
 
@@ -243,7 +267,7 @@ public class Player : MonoBehaviour
                 render.GetComponentInChildren<Renderer>().enabled = false; //전에 들고 있던 무기 비활성화
             }
 
-            equipWeapon = weapons[weaponIndex]; //현재 들고있는 무기Index값 저장
+            equipWeapon = weapons[weaponIndex].GetComponent<Weapon>(); //현재 들고있는 무기Index값 저장
 
             render = equipWeapon.GetComponentInChildren<Renderer>();
             render.GetComponentInChildren<Renderer>().enabled = true; //Swap에 따른 무기 활성화
@@ -294,6 +318,33 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isJump", false);
             isJump = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Item")
+        {
+            Item item = other.GetComponent<Item>();
+            switch (item.type)
+            {
+                case Item.Type.Ammo:
+                    ammo += item.value;
+                    if (ammo > maxAmmo)
+                        ammo = maxAmmo;
+                    break;
+                case Item.Type.Coin:
+                    coin += item.value;
+                    if (coin > maxCoin)
+                        coin = maxCoin;
+                    break;
+                case Item.Type.Heart:
+                    health += item.value;
+                    if (health > maxHealth)
+                        health = maxHealth;
+                    break;
+            }
+            Destroy(other.gameObject);
         }
     }
 
