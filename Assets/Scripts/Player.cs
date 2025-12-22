@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
+    public int ammo;
+    public int coin;
+    public int health;
+
     float moneX;
     float moveZ;
 
@@ -166,45 +170,70 @@ public class Player : MonoBehaviour
 
         int weaponIndex = -1; //배열은 0부터 시작하므로 -1 할당
 
-        if(SaveitemValue == 0) //기사 무기 설정 값
+        switch (SaveitemValue)
         {
-            if (swap1 && !isJump && !isDodge)
-            {
-                weaponIndex = 0;
-                equipWeaponIndex = 0;
-            }
-            if (swap2 && !isJump && !isDodge)
-            {
-                weaponIndex = 3;
-                equipWeaponIndex = 1;
-            }
+            case 0: //기사
+                if (swap1 && !isJump && !isDodge)
+                {
+                    weaponIndex = 0;
+                    equipWeaponIndex = 0;
+                }
+                if (swap2 && !isJump && !isDodge)
+                {
+                    weaponIndex = 3;
+                    equipWeaponIndex = 1;
+                }
+                break;
+            case 1: //도적
+                if (swap1 && !isJump && !isDodge)
+                {
+                    weaponIndex = 0;
+                    equipWeaponIndex = 0;
+                }
+                if (swap2 && !isJump && !isDodge)
+                {
+                    weaponIndex = 2;
+                    equipWeaponIndex = 1;
+                }
+                break;
+            case 2: //궁수
+                if (swap1 && !isJump && !isDodge)
+                {
+                    weaponIndex = 0;
+                    equipWeaponIndex = 0;
+                }
+                if (swap2 && !isJump && !isDodge)
+                {
+                    return;
+                }
+                break;
+            case 3: //바바리안
+                if (swap1 && !isJump && !isDodge)
+                {
+                    weaponIndex = 0;
+                    equipWeaponIndex = 0;
+                }
+                if (swap2 && !isJump && !isDodge)
+                {
+                    weaponIndex = 2;
+                    equipWeaponIndex = 1;
+                }
+                break;
+            case 4: //마법사
+                if (swap1 && !isJump && !isDodge)
+                {
+                    weaponIndex = 0;
+                    equipWeaponIndex = 0;
+                }
+                if (swap2 && !isJump && !isDodge)
+                {
+                    return;
+                }
+                break;
         }
-        else if (SaveitemValue == 2 || SaveitemValue == 4) //궁수, 마법사 무기 설정 값
-        {
-            if (swap1 && !isJump && !isDodge)
-            {
-                weaponIndex = 0;
-                equipWeaponIndex = 0;
-            }
-            if (swap2 && !isJump && !isDodge)
-            {
-                return;
-            }
-        }
-        else //도적, 바바리안 무기 설정 값
-        {
-            if (swap1 && !isJump && !isDodge)
-            {
-                weaponIndex = 0;
-                equipWeaponIndex = 0;
-            }
-            if (swap2 && !isJump && !isDodge)
-            {
-                weaponIndex = 2;
-                equipWeaponIndex = 1;
-            }
-        }
-        
+
+
+
 
         if ((swap1 || swap2) && !isJump && !isDodge) //점프, 회피 중에는 무기 교체 불가
         {

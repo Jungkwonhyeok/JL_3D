@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type {Weapon };
+    public enum Type {Weapon, Ammo, Coin};
 
     public Type type;
     public int value;
