@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     public float rate;     // 공격 속도(공격 간 딜레이)
     public BoxCollider meleeArea;      // 근접 공격 판정 범위
     public TrailRenderer trailEffect;  // 근접 공격 이펙트
+    public Transform bulletPos;
+    public GameObject bullet;
 
     public void Use() // 플레이어가 공격 입력 시 무기를 사용하는 함수
     {
@@ -17,6 +19,10 @@ public class Weapon : MonoBehaviour
         {
             StopCoroutine("Swing");   // 이전 공격 코루틴 중단
             StartCoroutine("Swing");  // 근접 공격 코루틴 실행
+        }
+        else if(type == Type.Range)
+        {
+            StartCoroutine("Shot");
         }
     }
 
@@ -35,4 +41,14 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         trailEffect.enabled = false;
     }
+
+    IEnumerator Shot()
+    {
+        GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
+        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
+        bulletRigid.velocity = bulletPos.forward * 50;
+
+        yield return null;
+    }
+
 }

@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 
         foreach (Transform child in GetComponentsInChildren<Transform>()) // 자신 + 자식 + 자식의 자식 중 Tag가 Weapon인 오브젝트를 찾음
         {
-            if (child.CompareTag("Weapon"))
+            if (child.CompareTag("Weapon")|| child.CompareTag("Melee"))
             {
                 weaponList.Add(child.gameObject);
             }
