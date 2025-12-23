@@ -745,7 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 30
-  rate: 0
+  rate: 0.5
   meleeArea: {fileID: 771563809221746583}
   trailEffect: {fileID: 2212114099606580534}
 --- !u!65 &771563809221746583
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 20
-  rate: 0
+  rate: 0.7
   meleeArea: {fileID: 388290723531311461}
   trailEffect: {fileID: 4312388981297000804}
 --- !u!65 &388290723531311461
@@ -1390,6 +1390,15 @@ TrailRenderer:
         value: 1
         inSlope: 0
         outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9300704
+        value: 0.6793783
+        inSlope: -1.4633884
+        outSlope: -1.4633884
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
@@ -2191,7 +2200,7 @@ Transform:
   m_GameObject: {fileID: 9152333743786517047}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000035958788, y: 0.000000024123366, z: -1.8881322e-15, w: 1}
-  m_LocalPosition: {x: 0.515, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0.49, y: 0.63, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2243,7 +2252,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2252,6 +2261,15 @@ TrailRenderer:
         value: 1
         inSlope: 0
         outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.921703
+        value: 0.6947875
+        inSlope: -1.4847808
+        outSlope: -1.4847808
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334

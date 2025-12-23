@@ -5,18 +5,18 @@ using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-public class HeroChange //캐릭터 바꾸는 class
+public class HeroChange // 캐릭터 교체에 사용되는 클래스
 {
     int num;
-    public GameObject[] Prefab;
+    public GameObject[] Prefab; // 각 캐릭터 프리팹 배열
 }
 
 public class Player : MonoBehaviour
 {
     public float speed;
     public float jumpPower;
-    public GameObject[] weapons;
-    public bool[] hasWeapons;
+    public GameObject[] weapons; // 현재 캐릭터가 보유한 무기 오브젝트들
+    public bool[] hasWeapons; // 무기(=캐릭터) 보유 여부
 
     public int ammo; //화살 개수
     public int coin; //코인 개수
@@ -75,11 +75,11 @@ public class Player : MonoBehaviour
         Swap();
         Interation();
     }
-    public void FindWeapons() //캐릭터 교체 시 weapons null 방지용 함수
+    public void FindWeapons() // 캐릭터 교체 후 weapons 배열이 null 되는 것을 방지
     {
         List<GameObject> weaponList = new List<GameObject>();
 
-        foreach (Transform child in GetComponentsInChildren<Transform>()) //부모obj + 자식obj + 자식의 자식obj 중 Teg가 Weapon인 obj를 새로운 리스트에 저장
+        foreach (Transform child in GetComponentsInChildren<Transform>()) // 자신 + 자식 + 자식의 자식 중 Tag가 Weapon인 오브젝트를 찾음
         {
             if (child.CompareTag("Weapon"))
             {
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        weapons = weaponList.ToArray(); //저장한 obj를 weapons리스트에 저장
+        weapons = weaponList.ToArray(); // 찾은 무기들을 배열로 저장
     }
 
     public void GetInput() // 키보드 입력
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isRun", Run);
         }
 
-        
+
     }
 
     public void Turn() //회전
@@ -136,11 +136,11 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-    
+
     public void Jump() //점프
     {
 
-        if (jump && !Run && !isJump && !isDodge && !isSwap) //제자리에서 점프, 움직이며 점프, 무기 전환 시 행동 불가
+        if (jump && !Run && !isJump && !isDodge && !isSwap && isFireReady) //제자리에서 점프, 움직이며 점프, 무기 전환 시 행동 불가
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             anim.SetBool("isJump", true);
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         if (fire1 && isFireReady && !isDodge && !isSwap) //공격이 가능 하고, 회피, 무기 교체 상태가 아닐 시 공격
         {
             equipWeapon.Use();
-            anim.SetTrigger("doSwing");
+            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doCross");
             fireDelay = 0;
         }
     }
@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
                 }
                 if (swap2 && !isJump && !isDodge)
                 {
-                    weaponIndex = 3;
+                    weaponIndex = 2;
                     equipWeaponIndex = 1;
                 }
                 break;
@@ -261,9 +261,9 @@ public class Player : MonoBehaviour
 
         if ((swap1 || swap2) && !isJump && !isDodge) //점프, 회피 중에는 무기 교체 불가
         {
-            if(equipWeapon != null) //무기를 들고 있지 않으면 활성화만
+            if (equipWeapon != null) //무기를 들고 있지 않으면 활성화만
             {
-                render = equipWeapon.GetComponentInChildren<Renderer>(); 
+                render = equipWeapon.GetComponentInChildren<Renderer>();
                 render.GetComponentInChildren<Renderer>().enabled = false; //전에 들고 있던 무기 비활성화
             }
 
@@ -287,9 +287,9 @@ public class Player : MonoBehaviour
 
     void Interation() //상호작용(아이템 먹음)
     {
-        if(interation && nearObject != null && !isJump)
+        if (interation && nearObject != null && !isJump)
         {
-            if(nearObject.tag == "Weapon")
+            if (nearObject.tag == "Weapon")
             {
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value; //아이템 value값을 무기 인덱스로 저장
@@ -314,7 +314,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Floor") //땅에 다이면 다시 점프 가능
+        if (collision.gameObject.tag == "Floor") //땅에 다이면 다시 점프 가능
         {
             anim.SetBool("isJump", false);
             isJump = false;
@@ -350,7 +350,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Weapon")
+        if (other.tag == "Weapon")
             nearObject = other.gameObject; //가까이 가면 nearobj에 아이템 obj를  저장
     }
 
@@ -358,7 +358,7 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Weapon")
             nearObject = null; //멀어지면 nearobj를 비움
-        
+
     }
 
     public void HeroChange(int num) //바꿀 캐릭터 저장해주는 함수
