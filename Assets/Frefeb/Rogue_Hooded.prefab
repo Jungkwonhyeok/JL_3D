@@ -786,6 +786,8 @@ MonoBehaviour:
   type: 1
   damage: 0
   rate: 0.8
+  maxAmmo: 7
+  curAmmo: 7
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
   bulletPos: {fileID: 253116103470000039}
@@ -1736,6 +1738,8 @@ MonoBehaviour:
   type: 1
   damage: 0
   rate: 0.6
+  maxAmmo: 8
+  curAmmo: 8
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
   bulletPos: {fileID: 253116103470000039}
@@ -2166,6 +2170,8 @@ MonoBehaviour:
   type: 0
   damage: 25
   rate: 0.4
+  maxAmmo: 0
+  curAmmo: 0
   meleeArea: {fileID: 7555256489271745871}
   trailEffect: {fileID: 4170809429559324327}
   bulletPos: {fileID: 0}

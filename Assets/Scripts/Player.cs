@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     bool Run;
     bool jump;
+    bool reload;
     bool fire1;
     bool interation;
     bool swap1;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     bool isDodge;
     bool isSwap;
     bool isFireReady = true;
+    bool isReload;
 
     Vector3 move;
     Vector3 dodge;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Reload();
         Attack();
         Dodge();
         Swap();
@@ -96,7 +99,8 @@ public class Player : MonoBehaviour
         moveZ = Input.GetAxis("Vertical");
         Run = Input.GetButton("Run");
         jump = Input.GetButtonDown("Jump");
-        fire1 = Input.GetButtonDown("Fire1");
+        reload = Input.GetButtonDown("Reload");
+        fire1 = Input.GetButton("Fire1");
         interation = Input.GetButtonDown("Interation");
         swap1 = Input.GetButtonDown("Swap1");
         swap2 = Input.GetButtonDown("Swap2");
@@ -112,7 +116,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (isSwap || !isFireReady) //움직이며 점프, 무기 전환, 공격 중 일시 행동 불가
+        if (isSwap || isReload || !isFireReady) //움직이며 점프, 무기 전환, 공격 중 일시 행동 불가
             move = Vector3.zero;
 
         transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
@@ -160,11 +164,33 @@ public class Player : MonoBehaviour
         if (fire1 && isFireReady && !isDodge && !isSwap) //공격이 가능 하고, 회피, 무기 교체 상태가 아닐 시 공격
         {
             equipWeapon.Use();
-            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doCross");
+            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
             fireDelay = 0;
         }
     }
 
+    void Reload()
+    {
+        if(equipWeapon == null) 
+            return;
+
+        if (equipWeapon.type == Weapon.Type.Melee)
+            return;
+        if (reload && !isJump && !isSwap && isFireReady)
+        {
+            isReload = true;
+            anim.SetTrigger("doReload");
+            Invoke("ReloadOut", 1f);
+        }
+    }
+
+    void ReloadOut()
+    {
+        int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
+        equipWeapon.curAmmo = reAmmo;
+        ammo -= reAmmo;
+        isReload = false;
+    }
     public void Dodge() //회피
     {
 

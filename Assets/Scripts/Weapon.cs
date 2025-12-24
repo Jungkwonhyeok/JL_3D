@@ -8,6 +8,9 @@ public class Weapon : MonoBehaviour
     public Type type;
     public int damage;     // 무기 공격력
     public float rate;     // 공격 속도(공격 간 딜레이)
+    public int maxAmmo;
+    public int curAmmo;
+
     public BoxCollider meleeArea;      // 근접 공격 판정 범위
     public TrailRenderer trailEffect;  // 근접 공격 이펙트
     public Transform bulletPos;
@@ -20,8 +23,9 @@ public class Weapon : MonoBehaviour
             StopCoroutine("Swing");   // 이전 공격 코루틴 중단
             StartCoroutine("Swing");  // 근접 공격 코루틴 실행
         }
-        else if(type == Type.Range)
+        else if(type == Type.Range && curAmmo > 0)
         {
+            curAmmo--;
             StartCoroutine("Shot");
         }
     }
