@@ -802,6 +802,7 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   maxAmmo: 6
   curAmmo: 6
 =======
@@ -866,6 +867,7 @@ MonoBehaviour:
   maxAmmo: 6
   curAmmo: 6
 >>>>>>> parent of 48c510d (물리 고치기)
+>>>>>>> parent of f84a508 (재장전 구현)
 =======
   maxAmmo: 7
   curAmmo: 7

@@ -857,6 +857,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1262,10 +1263,12 @@ PrefabInstance:
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
 >>>>>>> parent of f84a508 (재장전 구현)
+>>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 2712862274257679230, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1350,10 +1353,12 @@ PrefabInstance:
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
 >>>>>>> parent of f84a508 (재장전 구현)
+>>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 2952183415994694442, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1564,6 +1569,7 @@ PrefabInstance:
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
 >>>>>>> parent of f84a508 (재장전 구현)
+>>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 3744953495649131263, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1585,6 +1591,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1773,11 +1780,13 @@ PrefabInstance:
 =======
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
+>>>>>>> parent of f84a508 (재장전 구현)
 >>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 4514570199034253995, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1865,6 +1874,7 @@ PrefabInstance:
 =======
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
+>>>>>>> parent of f84a508 (재장전 구현)
 >>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 4768552003050810481, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2018,6 +2028,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2312,10 +2323,12 @@ PrefabInstance:
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
 >>>>>>> parent of f84a508 (재장전 구현)
+>>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 8766768457557839948, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -2403,6 +2416,7 @@ PrefabInstance:
 =======
 >>>>>>> parent of 48c510d (물리 고치기)
 =======
+>>>>>>> parent of f84a508 (재장전 구현)
 >>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 9159056714281777736, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
