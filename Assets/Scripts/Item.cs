@@ -9,8 +9,28 @@ public class Item : MonoBehaviour
     public Type type;
     public int value;
 
+
+
+    Rigidbody rigid;
+    SphereCollider sphereCollider;
+
+    void Awake() //아이템 물리 충돌 제거
+    {
+        rigid = GetComponent<Rigidbody>();
+        sphereCollider = GetComponent<SphereCollider>();
+    }
+
     void Update()
     {
         transform.Rotate(Vector3.up * 20 *  Time.deltaTime); //아이템 obj 회전
+    }
+
+    void OnCollisionEnter(Collision collision) //함수에서 변수를 호출, 물리효과 변경
+    {
+        if(collision.gameObject.tag == "Floor")
+        {
+            rigid.isKinematic = true;
+            sphereCollider.enabled = false;
+        }
     }
 }
