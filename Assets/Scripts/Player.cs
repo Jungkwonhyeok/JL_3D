@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     bool isSwap;
     bool isFireReady = true;
     bool isReload;
+    bool isBorder;
 
     Vector3 move;
     Vector3 dodge;
@@ -119,7 +120,8 @@ public class Player : MonoBehaviour
         if (isSwap || isReload || !isFireReady) //움직이며 점프, 무기 전환, 공격 중 일시 행동 불가
             move = Vector3.zero;
 
-        transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
+        if (!isBorder)
+            transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
 
         if (anim != null)
         {
@@ -336,6 +338,22 @@ public class Player : MonoBehaviour
                 Invoke("FindWeapons", 0.1f);
             }
         }
+    }
+
+    void FreezRotation()
+    {
+        rigid.angularVelocity = Vector3.zero;
+    }
+
+    void StopToWall()
+    {
+        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
+    }
+
+    void FixedUpdate()
+    {
+        FreezRotation();
+        StopToWall();
     }
 
     void OnCollisionEnter(Collision collision)
