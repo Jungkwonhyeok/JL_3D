@@ -837,6 +837,37 @@ Transform:
   - {fileID: 2916819769548281093}
   m_Father: {fileID: 6477622824932527283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2873764198540515358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5637950450224063385}
+  m_Layer: 0
+  m_Name: Bullet Poss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5637950450224063385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873764198540515358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.7763566e-15, y: 0.00000004470348, z: -0.000000014901159, w: 1}
+  m_LocalPosition: {x: 0.511, y: 1.133, z: 0.62951857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4614558852518995110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3088576445960308366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,11 +1106,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   damage: 0
-  rate: 0
+  rate: 0.8
+  maxAmmo: 6
+  curAmmo: 6
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  bulletPos: {fileID: 5637950450224063385}
+  bullet: {fileID: 6836369034027093210, guid: fbd607634f3fa29479d77db55ff40250, type: 3}
 --- !u!1 &4052833164845839955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,11 +1608,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   damage: 0
-  rate: 0
+  rate: 1
+  maxAmmo: 5
+  curAmmo: 5
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  bulletPos: {fileID: 5637950450224063385}
+  bullet: {fileID: 2547453067800247480, guid: 8884339d806e25c47b38068ecbb21844, type: 3}
 --- !u!1 &5670289109106477879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,6 +1819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5637950450224063385}
   - {fileID: 4614870347989856518}
   - {fileID: 553060368499763856}
   - {fileID: 5115290198964225413}

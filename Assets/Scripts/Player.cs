@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public float jumpPower;
     public GameObject[] weapons; // 현재 캐릭터가 보유한 무기 오브젝트들
     public bool[] hasWeapons; // 무기(=캐릭터) 보유 여부
+    public Camera followCamera;
 
     public int ammo; //화살 개수
     public int coin; //코인 개수
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
 
         foreach (Transform child in GetComponentsInChildren<Transform>()) // 자신 + 자식 + 자식의 자식 중 Tag가 Weapon인 오브젝트를 찾음
         {
-            if (child.CompareTag("Weapon")|| child.CompareTag("Melee"))
+            if (child.CompareTag("Weapon") || child.CompareTag("Melee"))
             {
                 weaponList.Add(child.gameObject);
             }
@@ -120,7 +121,7 @@ public class Player : MonoBehaviour
         if (isSwap || isReload || !isFireReady) //움직이며 점프, 무기 전환, 공격 중 일시 행동 불가
             move = Vector3.zero;
 
-        if (!isBorder)
+        if(!isBorder)
             transform.position += move * speed * (!Run ? 0.6f : 1f) * Time.deltaTime;
 
         if (anim != null)
@@ -141,6 +142,18 @@ public class Player : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+        if (fire1 && !isJump && !isReload && !isDodge && (equipWeapon != null && equipWeapon.curAmmo != 0))
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100))
+            {
+                Vector3 nextVec = rayHit.point - transform.position;
+                nextVec.y = 0f;
+                transform.LookAt(transform.position + nextVec);
+            }
+        }
+
     }
 
     public void Jump() //점프
@@ -163,8 +176,10 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime; //공격 키를 느르고 얼마나 지났는지 값을 입력
         isFireReady = equipWeapon.rate < fireDelay; //공격 딜레이 < 공격 후 지난 시간 으로 공격 가능 여부 확인
 
-        if (fire1 && isFireReady && !isDodge && !isSwap) //공격이 가능 하고, 회피, 무기 교체 상태가 아닐 시 공격
+        if (fire1 && isFireReady && !isDodge && !isSwap && !isReload) //공격이 가능 하고, 회피, 무기 교체 상태가 아닐 시 공격
         {
+            if (equipWeapon.type == Weapon.Type.Range && equipWeapon.curAmmo <= 0)
+                return;
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
             fireDelay = 0;
@@ -173,12 +188,12 @@ public class Player : MonoBehaviour
 
     void Reload()
     {
-        if(equipWeapon == null) 
+        if (equipWeapon == null)
             return;
 
         if (equipWeapon.type == Weapon.Type.Melee)
             return;
-        if (reload && !isJump && !isSwap && isFireReady)
+        if (reload && !isJump && !isSwap && isFireReady && ammo != 0 && equipWeapon.curAmmo != equipWeapon.maxAmmo && !isReload)
         {
             isReload = true;
             anim.SetTrigger("doReload");
@@ -431,10 +446,17 @@ public class Player : MonoBehaviour
         else if (hasWeapons[1] == true)
         {
             HeroChange(1); //도적
+            ammo += 50;
+            if (ammo >= maxAmmo)
+                ammo = maxAmmo;
+
         }
         else if (hasWeapons[2] == true)
         {
             HeroChange(2); //궁수
+            ammo += 50;
+            if (ammo >= maxAmmo)
+                ammo = maxAmmo;
         }
         else if (hasWeapons[3] == true)
         {

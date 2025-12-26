@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 604356400}
   m_Layer: 9
   m_Name: Wall(3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 651896438}
   m_Layer: 9
   m_Name: Wall(1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -549,6 +549,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &786488476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3002002187869441801, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_Name
+      value: Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.069975
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49999905
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.306284
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5624073823300814313, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
 --- !u!1001 &806591893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -663,63 +720,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0c8b3634235a464c90bb60b4bd40242, type: 3}
---- !u!1001 &904169198
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3746813657511896264, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_Name
-      value: Spellbook
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.03983
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5000019
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.178442
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930258008118907659, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
 --- !u!4 &953496604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7204827272744937320, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
@@ -897,95 +897,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1231510863}
     m_Modifications:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.00000027235288
-=======
-    - target: {fileID: 763569610935716188, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of f1e025a (Test)
-=======
-    - target: {fileID: 763569610935716188, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-=======
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.00000027235288
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000034150944
-      objectReference: {fileID: 0}
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.40554842
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 3.5920548
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.009592888
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -31.854166
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -61.657883
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 153.57703
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 2700483032055471972, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-<<<<<<< HEAD
-=======
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.624076
-=======
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.00000027235288
-=======
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
     - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.00000027235288
@@ -1114,247 +1025,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -145.03502
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000034150944
-      objectReference: {fileID: 0}
-    - target: {fileID: 210864377021969941, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.40554842
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 3.5920548
-      objectReference: {fileID: 0}
-    - target: {fileID: 512077559978487837, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.009592888
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -31.854166
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -61.657883
-      objectReference: {fileID: 0}
-    - target: {fileID: 908910985726846895, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 153.57703
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.624076
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -50.339973
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 25.338919
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 31.805895
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000011903115
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.00002229794
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.600877
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 46.57302
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -30.11866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.0000025044778
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000013660376
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.97114e-13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -29.288918
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 65.11489
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -145.03502
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -50.339973
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 25.338919
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 31.805895
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000011903115
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.00002229794
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.600877
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 46.57302
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -30.11866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.0000025044778
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000013660376
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.97114e-13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -29.288918
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 65.11489
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -145.03502
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -50.339973
-      objectReference: {fileID: 0}
-    - target: {fileID: 1070724790834389024, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 25.338919
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 31.805895
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000011903115
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750849145349890830, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.00002229794
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.600877
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 46.57302
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814763314515434097, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -30.11866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.0000025044778
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000013660376
-      objectReference: {fileID: 0}
-    - target: {fileID: 2215072593992528234, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.97114e-13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -29.288918
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 65.11489
-      objectReference: {fileID: 0}
-    - target: {fileID: 2355058851879358124, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -145.03502
-=======
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-      objectReference: {fileID: 0}
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-<<<<<<< HEAD
->>>>>>> parent of f84a508 (재장전 구현)
-=======
     - target: {fileID: 2476528291647636372, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1363,104 +1033,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
-=======
->>>>>>> parent of 16b46bd (tEST)
     - target: {fileID: 2712862274257679230, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
     - target: {fileID: 2809037351608686966, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 2816435893123125645, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.0000025044778
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-    - target: {fileID: 2952183415994694442, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-=======
-    - target: {fileID: 2816435893123125645, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000025044778
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
->>>>>>> parent of c87df59 (물리 고치기)
-=======
-    - target: {fileID: 2809037351608686966, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952183415994694442, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-=======
-    - target: {fileID: 2816435893123125645, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000025044778
->>>>>>> parent of c87df59 (물리 고치기)
-=======
-    - target: {fileID: 2816435893123125645, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000025044778
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 2952183415994694442, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1469,67 +1053,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.8712354
-=======
-    - target: {fileID: 3226705106556454811, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of f1e025a (Test)
-=======
-    - target: {fileID: 3226705106556454811, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-=======
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.8712354
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -176.56932
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 3489742241271764329, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-<<<<<<< HEAD
-=======
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 176.82237
-=======
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.8712354
-=======
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
     - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 6.8712354
@@ -1574,199 +1097,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.000020299505
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -176.56932
-      objectReference: {fileID: 0}
-    - target: {fileID: 3164510931579108209, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 176.82237
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.5740676
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00024936715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.049691677
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 30.48694
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0000020778978
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.000020299505
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.5740676
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00024936715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.049691677
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 30.48694
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0000020778978
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.000020299505
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.5740676
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00024936715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3273442970351999878, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.049691677
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 30.48694
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0000020778978
-      objectReference: {fileID: 0}
-    - target: {fileID: 3424768380361238266, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.000020299505
-=======
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-      objectReference: {fileID: 0}
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-<<<<<<< HEAD
->>>>>>> parent of f84a508 (재장전 구현)
-=======
     - target: {fileID: 3489742241271764329, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
-=======
->>>>>>> parent of 16b46bd (tEST)
     - target: {fileID: 3744953495649131263, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -66.36737
-=======
-    - target: {fileID: 3904804520910123092, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of f1e025a (Test)
-=======
-    - target: {fileID: 3904804520910123092, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-=======
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -66.36737
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -29.551344
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 20.777306
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 4514570199034253995, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-<<<<<<< HEAD
-=======
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000084238985
-=======
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -66.36737
-=======
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
     - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -66.36737
@@ -1807,115 +1145,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -172.60612
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -29.551344
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853862368336631509, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 20.777306
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000084238985
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00000044965498
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.0551555
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.009635
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -171.29726
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -172.60612
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00000044965498
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.0551555
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.009635
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -171.29726
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -172.60612
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.00000044965498
-      objectReference: {fileID: 0}
-    - target: {fileID: 3987457081466473593, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.0551555
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.009635
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -171.29726
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000170294419766637, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -172.60612
-=======
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-      objectReference: {fileID: 0}
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-<<<<<<< HEAD
->>>>>>> parent of f84a508 (재장전 구현)
-=======
     - target: {fileID: 4194632347295973280, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1928,50 +1157,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
-=======
->>>>>>> parent of 16b46bd (tEST)
     - target: {fileID: 4514570199034253995, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
     - target: {fileID: 4522008665949787598, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 4559203504335836685, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0.000000025444347
@@ -1996,40 +1189,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -44.21844
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c87df59 (물리 고치기)
-=======
-    - target: {fileID: 4522008665949787598, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 4768552003050810481, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2246,81 +1405,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -61.66099
-=======
-    - target: {fileID: 7223859310506569265, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of f1e025a (Test)
-=======
-    - target: {fileID: 7223859310506569265, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-=======
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -61.66099
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 29.850592
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -23.783144
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 46.083004
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -179.99115
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 8509118632255171589, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-<<<<<<< HEAD
-=======
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.014882704
-=======
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -61.66099
-=======
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
     - target: {fileID: 7223859310506569265, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -2329,7 +1413,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -61.66099
@@ -2406,201 +1489,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.0025492057
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 29.850592
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682918025036645027, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -23.783144
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 46.083004
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -179.99115
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064394854667442866, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.014882704
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000011261294
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000004268868
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000034150665
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000032130363
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -3.055155
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 46.071705
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.99849
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.0025492057
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000011261294
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000004268868
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000034150665
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000032130363
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -3.055155
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 46.071705
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.99849
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.0025492057
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000011261294
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.000004268868
-      objectReference: {fileID: 0}
-    - target: {fileID: 8095792461648498161, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.00000034150665
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0000032130363
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525319651523703267, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -3.055155
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 46.071705
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.99849
-      objectReference: {fileID: 0}
-    - target: {fileID: 8723788090049007319, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.0025492057
-=======
->>>>>>> parent of 6f6666c (Revert "물리 고치기")
-      objectReference: {fileID: 0}
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 8766768457557839948, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
     - target: {fileID: 8917250099191171571, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 6.1305187e-13
@@ -2629,40 +1521,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 42.027935
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of c87df59 (물리 고치기)
-=======
-    - target: {fileID: 8934925242925087518, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
-      propertyPath: m_Layer
-      value: 7
-=======
->>>>>>> parent of c87df59 (물리 고치기)
-      objectReference: {fileID: 0}
->>>>>>> parent of f1e025a (Test)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 2265f4c (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
-=======
->>>>>>> parent of 48c510d (물리 고치기)
-=======
->>>>>>> parent of f84a508 (재장전 구현)
     - target: {fileID: 9159056714281777736, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2731,7 +1589,7 @@ GameObject:
   - component: {fileID: 1187492530}
   m_Layer: 9
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2864,7 +1722,7 @@ GameObject:
   - component: {fileID: 1219571152}
   m_Layer: 9
   m_Name: Wall(2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3088,7 +1946,8 @@ MonoBehaviour:
   - {fileID: 194502698}
   - {fileID: 1916064736}
   hasWeapons: 0100000000
-  ammo: 0
+  followCamera: {fileID: 963194227}
+  ammo: 990
   coin: 0
   health: 100
   maxAmmo: 999
@@ -3489,8 +2348,4 @@ SceneRoots:
   - {fileID: 1946155019}
   - {fileID: 2142715660}
   - {fileID: 224437188}
-<<<<<<< Updated upstream
-=======
   - {fileID: 786488476}
-  - {fileID: 904169198}
->>>>>>> Stashed changes
