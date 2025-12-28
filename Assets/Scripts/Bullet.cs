@@ -6,13 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public int damage;
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Floor")
-        {
-            Destroy(gameObject, 3);
-        }
-        else if (collision.gameObject.tag == "Wall")
+        if(other.gameObject.tag == "Wall") //벽에 충돌 시 obj 삭제
         {
             Destroy(gameObject);
         }

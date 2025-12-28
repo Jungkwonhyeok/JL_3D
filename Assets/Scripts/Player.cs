@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
             if (equipWeapon.type == Weapon.Type.Range && equipWeapon.curAmmo <= 0)
                 return;
             equipWeapon.Use();
-            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
+            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee || equipWeapon.type == Weapon.Type.Magic ? "doSwing" : "doShot");
             fireDelay = 0;
         }
     }
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
         if (equipWeapon == null)
             return;
 
-        if (equipWeapon.type == Weapon.Type.Melee)
+        if (equipWeapon.type == Weapon.Type.Melee || equipWeapon.type == Weapon.Type.Magic)
             return;
 
         if (reload && !isJump && !isSwap && isFireReady && ammo != 0 && equipWeapon.curAmmo != equipWeapon.maxAmmo && !isReload)
