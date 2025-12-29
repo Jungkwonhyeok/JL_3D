@@ -96,15 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5528f3e6362c71448a9e1cddc588bcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   damage: 0
-  rate: 0
-  maxAmmo: 0
-  curAmmo: 0
+  rate: 1.5
+  maxAmmo: 1
+  curAmmo: 1
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
-  bulletPos: {fileID: 0}
-  bullet: {fileID: 0}
+  bulletPos: {fileID: 1739394916885114082}
+  bullet: {fileID: 4242913206948407304, guid: fd1e3f2121039e04995c72c0cc936186, type: 3}
 --- !u!1 &138317296889395029
 GameObject:
   m_ObjectHideFlags: 0

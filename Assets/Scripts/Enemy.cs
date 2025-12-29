@@ -26,12 +26,13 @@ public class Enemy : MonoBehaviour
 
             StartCoroutine(OnDamage(reactVec));
         }
-        else if(other.tag == "Bullet") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
+        else if(other.tag == "Bullet" || other.tag == "FireBall") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
         {
             Bullet bullet = other.GetComponent<Bullet>();
             curHealth -= bullet.damage;
             Vector3 reactVec = transform.position - other.transform.position; //현재 위치에 피격 위치를 뺴서 반작용 방향 구하기
             Destroy(other.gameObject);
+
 
             StartCoroutine(OnDamage(reactVec));
         }

@@ -293,7 +293,8 @@ public class Player : MonoBehaviour
                 }
                 if (swap2 && !isJump && !isDodge)
                 {
-                    return;
+                    weaponIndex = 1;
+                    equipWeaponIndex = 1;
                 }
                 break;
         }
