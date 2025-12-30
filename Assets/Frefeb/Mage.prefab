@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   damage: 0
-  rate: 3.5
+  rate: 1.2
   maxAmmo: 1
   curAmmo: 1
   meleeArea: {fileID: 0}

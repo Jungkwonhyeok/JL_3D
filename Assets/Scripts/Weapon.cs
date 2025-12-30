@@ -76,7 +76,7 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         GameObject intantMagic = Instantiate(bullet, MagicPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Destroy(intantMagic);
     }
     
