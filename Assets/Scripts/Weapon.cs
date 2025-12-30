@@ -30,6 +30,11 @@ public class Weapon : MonoBehaviour
         }
         else if (type == Type.Magic)
         {
+            if(gameObject.name == "staff")
+            {
+                StartCoroutine("MagicCall");
+                return;
+            }
             StartCoroutine("Shot");
         }
     }
@@ -60,4 +65,19 @@ public class Weapon : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator MagicCall()
+    {
+        RaycastHit rayHit;
+        Physics.Raycast(bulletPos.position, bulletPos.forward, out rayHit, 1000);
+
+        Vector3 MagicPos = rayHit.point;
+        MagicPos.y = 0.5f;
+
+        yield return new WaitForSeconds(0.1f);
+        GameObject intantMagic = Instantiate(bullet, MagicPos, Quaternion.identity);
+
+        yield return new WaitForSeconds(4f);
+        Destroy(intantMagic);
+    }
+    
 }

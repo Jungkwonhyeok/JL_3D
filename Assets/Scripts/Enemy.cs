@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     Rigidbody rigid;
     BoxCollider boxCollider;
     Material mat;
+
+    float hitCool = 1f;
+    public float hitDelay = 1f;
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -38,6 +41,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "DarkMagic")
+        {
+            hitDelay += Time.deltaTime;   // 트리거에 닿아 있는 동안 시간 누적
+
+            if (hitCool <= hitDelay)      // 쿨타임 1초 넘으면
+            {
+                Bullet bullet = other.GetComponent<Bullet>();
+                curHealth -= bullet.damage;   // 데미지 1회 적용
+                hitDelay = 0;                 // 타이머 초기화
+
+                Vector3 reactVec = transform.position - other.transform.position;
+                StartCoroutine(OnDamage(reactVec));
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "DarkMagic")
+            hitDelay = 0f;
+    }
     IEnumerator OnDamage(Vector3 reactVec)
     {
         mat.color = Color.red; // 피격 시 0.1동안 빨간 색으로 바꿈

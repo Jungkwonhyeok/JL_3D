@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Bullet
   - FireBall
+  - DarkMagic
   layers:
   - Default
   - TransparentFX

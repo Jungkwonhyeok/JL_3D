@@ -76,9 +76,9 @@ public class Player : MonoBehaviour
         Turn();
         Jump();
         Reload();
-        Attack();
         Dodge();
         Swap();
+        Attack();
         Interation();
     }
 
@@ -169,10 +169,13 @@ public class Player : MonoBehaviour
     void Attack() // 공격 처리
     {
         if (equipWeapon == null)
+        {
+            fireDelay = 10;
             return;
+        }
 
         fireDelay += Time.deltaTime;
-        isFireReady = equipWeapon.rate < fireDelay;
+        isFireReady = equipWeapon.rate <= fireDelay;
 
         if (fire1 && isFireReady && !isDodge && !isSwap && !isReload)
         {
@@ -288,12 +291,12 @@ public class Player : MonoBehaviour
             case 4: // 마법사
                 if (swap1 && !isJump && !isDodge)
                 {
-                    weaponIndex = 0;
+                    weaponIndex = 1;
                     equipWeaponIndex = 0;
                 }
                 if (swap2 && !isJump && !isDodge)
                 {
-                    weaponIndex = 1;
+                    weaponIndex = 2;
                     equipWeaponIndex = 1;
                 }
                 break;

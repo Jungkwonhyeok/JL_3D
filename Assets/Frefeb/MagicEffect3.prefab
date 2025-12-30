@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3762301676981676575}
   - component: {fileID: 658943500502914795}
   - component: {fileID: 6718677002606151945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DarkSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4850,7 +4850,7 @@ GameObject:
   - component: {fileID: 6529918811467379185}
   - component: {fileID: 8463645233907383497}
   - component: {fileID: 6538468197787468912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9738,7 +9738,7 @@ GameObject:
   - component: {fileID: 6645468426598587945}
   - component: {fileID: 4759065337126593660}
   - component: {fileID: 3887294275767057357}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14635,7 +14635,7 @@ GameObject:
   - component: {fileID: 1820665434528496629}
   - component: {fileID: 1867243855473110517}
   - component: {fileID: 113328829336659116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Magic circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19526,9 +19526,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 803954959833476289}
-  m_Layer: 0
-  m_Name: Magic
-  m_TagString: Untagged
+  - component: {fileID: 8765385137070524370}
+  - component: {fileID: 2640914249093645176}
+  - component: {fileID: 6032900273573739688}
+  m_Layer: 8
+  m_Name: MagicEffect3
+  m_TagString: DarkMagic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19542,8 +19545,8 @@ Transform:
   m_GameObject: {fileID: 1810854330451138751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5598920967740149454}
@@ -19551,6 +19554,70 @@ Transform:
   - {fileID: 7708726457658008548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8765385137070524370
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810854330451138751}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &2640914249093645176
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810854330451138751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6032900273573739688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810854330451138751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1026f737962611840b3e80b736ad69ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  Explosion: {fileID: 0}
 --- !u!1 &2098058956177364209
 GameObject:
   m_ObjectHideFlags: 0
@@ -19562,7 +19629,7 @@ GameObject:
   - component: {fileID: 8367873876236538722}
   - component: {fileID: 7915978964285359483}
   - component: {fileID: 1632526764095284548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20859,7 +20926,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.19607843}
+        key0: {r: 1, g: 1, b: 1, a: 0.78431374}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -24392,7 +24459,7 @@ GameObject:
   - component: {fileID: 355738672788469621}
   - component: {fileID: 4085945450725657081}
   - component: {fileID: 4613450301060334769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29289,7 +29356,7 @@ GameObject:
   - component: {fileID: 8408298187784825977}
   - component: {fileID: 1250528235475344830}
   - component: {fileID: 1110552119756588724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34128,7 +34195,7 @@ GameObject:
   - component: {fileID: 6664637957229578359}
   - component: {fileID: 4957941492999395832}
   - component: {fileID: 3732577792702505735}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39016,7 +39083,7 @@ GameObject:
   - component: {fileID: 3098444612042896736}
   - component: {fileID: 9197578730998052414}
   - component: {fileID: 3129451279286766179}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40313,7 +40380,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.19607843}
+        key0: {r: 1, g: 1, b: 1, a: 0.78431374}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -43846,7 +43913,7 @@ GameObject:
   - component: {fileID: 5629387070175205129}
   - component: {fileID: 7791965323639618543}
   - component: {fileID: 1392619741331183930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DarkSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48685,7 +48752,7 @@ GameObject:
   - component: {fileID: 2693744913427514954}
   - component: {fileID: 3437912816577946181}
   - component: {fileID: 6766168237041693001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShockSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53573,7 +53640,7 @@ GameObject:
   - component: {fileID: 8121924182575492134}
   - component: {fileID: 1274517430398634273}
   - component: {fileID: 7817358055676752910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58412,7 +58479,7 @@ GameObject:
   - component: {fileID: 8189289447485175357}
   - component: {fileID: 720567226396887868}
   - component: {fileID: 6795984063789219350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63301,7 +63368,7 @@ GameObject:
   - component: {fileID: 3504995465505950184}
   - component: {fileID: 3796901044928740762}
   - component: {fileID: 4542554034528973779}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68298,7 +68365,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 3.9e-44, z: 1.313e-42, w: 1.3866863e+30}
+  m_BoundingSphereOverride: {x: 9.5e-43, y: 4.9e-44, z: 0, w: -2.2925637e-37}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -68314,7 +68381,7 @@ GameObject:
   - component: {fileID: 7766381163994931793}
   - component: {fileID: 7751734054625868375}
   - component: {fileID: 648642216704096947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShockWaveIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68526,7 +68593,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.29295808, g: 0.27058828, b: 1, a: 0.5176471}
+      maxColor: {r: 0.3453365, g: 0.16375932, b: 0.8679245, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -73202,7 +73269,7 @@ GameObject:
   - component: {fileID: 4930356810880931228}
   - component: {fileID: 4560285597035682336}
   - component: {fileID: 7513704007102915037}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78099,7 +78166,7 @@ GameObject:
   - component: {fileID: 2861774276911761634}
   - component: {fileID: 4487326184260665790}
   - component: {fileID: 6559188229485364075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83059,7 +83126,7 @@ GameObject:
   - component: {fileID: 7708726457658008548}
   - component: {fileID: 8955991571606320303}
   - component: {fileID: 1267043095960511086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Magic circle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87951,7 +88018,7 @@ GameObject:
   - component: {fileID: 2476544771829683746}
   - component: {fileID: 4463218698806059908}
   - component: {fileID: 4042594501917183008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92849,7 +92916,7 @@ GameObject:
   - component: {fileID: 5598920967740149454}
   - component: {fileID: 3144575369408976691}
   - component: {fileID: 1194359731967479355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red energy explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97756,7 +97823,7 @@ GameObject:
   - component: {fileID: 3617425299258946467}
   - component: {fileID: 5138514539600059160}
   - component: {fileID: 143932052612790471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CircleSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97968,7 +98035,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4978696, g: 0.36470592, b: 1, a: 1}
+      maxColor: {r: 0.25696722, g: 0.097187586, b: 0.8584906, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -102654,7 +102721,7 @@ GameObject:
   - component: {fileID: 1483155420532267194}
   - component: {fileID: 3530566797633293533}
   - component: {fileID: 5322983681894570109}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107651,7 +107718,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 9.703516e+29}
+  m_BoundingSphereOverride: {x: 0, y: 1.68e-43, z: 0.1953125, w: 0.18945312}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
