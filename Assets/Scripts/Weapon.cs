@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public Type type;
     public int damage;     // 무기 공격력
     public float rate;     // 공격 속도(공격 간 딜레이)
-    public int maxAmmo;
+    public int maxAmmo; 
     public int curAmmo;
 
     public BoxCollider meleeArea;      // 근접 공격 판정 범위
@@ -26,16 +26,16 @@ public class Weapon : MonoBehaviour
         else if(type == Type.Range && curAmmo > 0)
         {
             curAmmo--;
-            StartCoroutine("Shot");
+            StartCoroutine("Shot"); //원거리 공격 코루틴 실행
         }
         else if (type == Type.Magic)
         {
-            if(gameObject.name == "staff")
+            if(gameObject.name == "staff") // obj이름이 staff일 경우
             {
-                StartCoroutine("MagicCall");
+                StartCoroutine("MagicCall"); // 마법 공격 코루틴 실행(마법사 3Lv 전용)
                 return;
             }
-            StartCoroutine("Shot");
+            StartCoroutine("Shot"); // 아니면 원거리 공격 코루틴 실행
         }
     }
 
@@ -65,18 +65,18 @@ public class Weapon : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator MagicCall()
+    IEnumerator MagicCall() //마법 공격 시 ray를 발사하여 충돌한 위치에 마법을 소환하는 코루틴
     {
         RaycastHit rayHit;
-        Physics.Raycast(bulletPos.position, bulletPos.forward, out rayHit, 1000);
+        Physics.Raycast(bulletPos.position, bulletPos.forward, out rayHit, 1000); //bulletPos에서 ray를 발사함
 
-        Vector3 MagicPos = rayHit.point;
-        MagicPos.y = 0.5f;
+        Vector3 MagicPos = rayHit.point; //ray와 충돌한 지점을 마법이 소환 될 위치로 저장
+        MagicPos.y = 0.5f; //(y축을 0.5f로 해야 마법진이 다 보임)
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); //0.1초 후 마법 소환
         GameObject intantMagic = Instantiate(bullet, MagicPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);// 2초 후 마법 삭제
         Destroy(intantMagic);
     }
     

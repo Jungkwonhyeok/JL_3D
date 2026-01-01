@@ -1,22 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHealth;
-    public int curHealth;
-    Rigidbody rigid;
-    BoxCollider boxCollider;
-    Material mat;
+    public int maxHealth; //최대 체력
+    public int curHealth; //현재 체력
+    public Transform Target; // 추적 할 타겟
+    public bool isChase; //추적하고 있는지 여부
 
-    float hitCool = 1f;
-    public float hitDelay = 1f;
+    Rigidbody rigid;
+    CapsuleCollider capsuleCollider;
+    Renderer[] renders;
+    NavMeshAgent nav;
+    Animator anim;
+
+    float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정하는 변수
+    float hitDelay = 1f; // 마법 영역에서 데미지가 들어오고 얼마나 지났는지 저장하는 변수
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
-        mat = GetComponent <MeshRenderer>().material;
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        renders = GetComponentsInChildren<Renderer>();
+        nav = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
+
+        Invoke("ChaseStart", 2);
+    }
+
+    void ChaseStart() // 추적 시작하는 함수
+    {
+        isChase = true;
+        anim.SetBool("isWalk", true);
+    }
+    void Update()
+    {
+        if (isChase)
+        {
+            nav.SetDestination(Target.position);
+        }
+    }
+    void FreezVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
+    {
+        if (isChase)
+        {
+            rigid.velocity = Vector3.zero;
+            rigid.angularVelocity = Vector3.zero;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        FreezVelocity();
     }
 
     void OnTriggerEnter(Collider other)
@@ -66,17 +102,29 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator OnDamage(Vector3 reactVec)
     {
-        mat.color = Color.red; // 피격 시 0.1동안 빨간 색으로 바꿈
+        foreach (Renderer r in renders)
+        {
+            r.material.color = Color.red; // 피격 시 0.1동안 빨간 색으로 바꿈
+        }
         yield return new WaitForSeconds(0.1f);
 
-        if(curHealth > 0) //죽지 않으면 다시 흰색으로 바꿈
+        if (curHealth > 0) //죽지 않으면 다시 흰색으로 바꿈
         {
-            mat.color = Color.white;
+            foreach (Renderer r in renders)
+            {
+                r.material.color = Color.white;
+            }
         }
         else
         {
-            mat.color = Color.gray; //죽으면 색을 그레이로 바꿈
+            foreach (Renderer r in renders)
+            {
+                r.material.color = Color.gray; //죽으면 색을 그레이로 바꿈
+            }
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
+            isChase = false;
+            nav.enabled = false;
+            anim.SetTrigger("doDie");
 
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;

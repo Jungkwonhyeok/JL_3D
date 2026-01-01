@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor") //바닥에 충돌 시 현재 위치를 고정 시키고 콜라이더를 끈다
         {
             rigid.isKinematic = true;
             sphereCollider.enabled = false;

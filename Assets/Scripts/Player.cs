@@ -7,7 +7,6 @@ using UnityEngine;
 [System.Serializable]
 public class HeroChange // 캐릭터 교체에 사용되는 데이터 클래스 (프리팹 묶음용)
 {
-    int num; // (현재 코드에서는 사용되지 않음)
     public GameObject[] Prefab; // 각 캐릭터 프리팹 배열
 }
 
@@ -291,13 +290,12 @@ public class Player : MonoBehaviour
             case 4: // 마법사
                 if (swap1 && !isJump && !isDodge)
                 {
-                    weaponIndex = 1;
+                    weaponIndex = 0;
                     equipWeaponIndex = 0;
                 }
                 if (swap2 && !isJump && !isDodge)
                 {
-                    weaponIndex = 2;
-                    equipWeaponIndex = 1;
+                    return;
                 }
                 break;
         }

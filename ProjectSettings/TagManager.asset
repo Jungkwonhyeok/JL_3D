@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - FireBall
   - DarkMagic
+  - Enemy
   layers:
   - Default
   - TransparentFX
