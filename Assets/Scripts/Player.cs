@@ -42,12 +42,14 @@ public class Player : MonoBehaviour
     bool isFireReady = true; // 공격 쿨타임이 끝났는지 여부
     bool isReload; // 재장전 중 여부
     bool isBorder; // 벽에 막혀 있는지 여부
+    bool isDamage; //적에게 공격 당하고 있는지 여부
 
     Vector3 move;
     Vector3 dodge;
 
     Rigidbody rigid;
     Animator anim;
+    Renderer[] renders;
 
     GameObject nearObject; // 근처에 있는 상호작용 대상
     Weapon equipWeapon; // 현재 장착 중인 무기 스크립트
@@ -63,13 +65,16 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>(); // 최초 Animator 참조
+        renders = GetComponentsInChildren<Renderer>();
     }
 
+    void OnTransformChildrenChanged() //캐릭터가 교체 됐을 떄 null 방지
+    {
+        renders = GetComponentsInChildren<Renderer>();
+        anim = GetComponentInChildren<Animator>();
+    }
     public void Update()
     {
-        if (anim == null) // 캐릭터 교체 후 Animator가 파괴되었을 경우 재탐색
-            anim = GetComponentInChildren<Animator>();
-
         GetInput();
         Move();
         Turn();
@@ -82,6 +87,7 @@ public class Player : MonoBehaviour
     }
 
     public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
+
     {
         List<GameObject> weaponList = new List<GameObject>();
 
@@ -401,6 +407,32 @@ public class Player : MonoBehaviour
                     break;
             }
             Destroy(other.gameObject);
+        }
+        else if (other.tag == "EnemyBullet")
+        {
+            if(!isDamage) //공격을 당하지 않았을떄
+            {
+                Bullet enemyBullet = other.GetComponent<Bullet>();
+                health -= enemyBullet.damage;
+                StartCoroutine(OnDamage());
+            }
+        }
+    }
+
+    IEnumerator OnDamage() //공격 받을때 코루틴
+    {
+        isDamage = true;
+        foreach(Renderer r in renders)
+        {
+            r.material.color = Color.red; //mtr을 빨간색으로 바꿈
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        isDamage = false;
+        foreach (Renderer r in renders)
+        {
+            r.material.color = Color.white; //mtr을 흰색으로 바꿈
         }
     }
 

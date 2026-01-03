@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour
     public int maxHealth; //최대 체력
     public int curHealth; //현재 체력
     public Transform Target; // 추적 할 타겟
+    public BoxCollider meleeArea; //근접 공격 범위
     public bool isChase; //추적하고 있는지 여부
+    public bool isAttack; //공격중인지
 
     Rigidbody rigid;
     CapsuleCollider capsuleCollider;
@@ -16,7 +18,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     Animator anim;
 
-    float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정하는 변수
+    float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정
     float hitDelay = 1f; // 마법 영역에서 데미지가 들어오고 얼마나 지났는지 저장하는 변수
     void Awake()
     {
@@ -36,9 +38,10 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (isChase)
+        if (nav.enabled) //nav가 활성화 되어있으면
         {
-            nav.SetDestination(Target.position);
+            nav.SetDestination(Target.position); //추적 할 목표물 위치 정하기
+            nav.isStopped = !isChase; //추적 중이지 않으면 멈춘다
         }
     }
     void FreezVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
@@ -50,8 +53,40 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void Targerting() //타겟팅을 위한 함수
+    {
+        float targetRadius = 1.5f; //SphereCast의 반지름
+        float targetRange = 3f; //SphereCast의 길이
+
+        RaycastHit[] raycastHits = 
+            Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
+
+        if(raycastHits.Length > 0 && !isAttack && curHealth >= 0) //cast 범위에 들어오고 공격하고 읶지 않을때
+        {
+            StartCoroutine(Attack());
+        }
+    }
+
+    IEnumerator Attack() // 공격하는 코루틴
+    {
+        isChase = false; //추적 비활성화
+        isAttack = true; //공격 하고 있는지 여부(O)
+        anim.SetBool("isAttack", true);
+
+        yield return new WaitForSeconds(0.2f);
+        meleeArea.enabled = true; //0.2초 뒤 근접 공격 범위 활성화
+
+        yield return new WaitForSeconds(1f);
+        meleeArea.enabled = false; //1초 뒤 근접 공격 범위 비활성화
+
+        isChase = true; //추적 활성화
+        isAttack = false; //공격 하고 있는지 여부(X)
+        anim.SetBool("isAttack", false);
+    }
+
     void FixedUpdate()
     {
+        Targerting();
         FreezVelocity();
     }
 
@@ -121,9 +156,10 @@ public class Enemy : MonoBehaviour
             {
                 r.material.color = Color.gray; //죽으면 색을 그레이로 바꿈
             }
+            meleeArea.enabled = false; //
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
             isChase = false;
-            nav.enabled = false;
+            nav.enabled = false; //근접 공격 범위 비활성화
             anim.SetTrigger("doDie");
 
             reactVec = reactVec.normalized;
