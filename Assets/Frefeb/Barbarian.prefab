@@ -515,8 +515,12 @@ MonoBehaviour:
   type: 1
   damage: 0
   rate: 0
+  maxAmmo: 0
+  curAmmo: 0
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &1531624069825890956
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +664,7 @@ GameObject:
   - component: {fileID: 771563809221746583}
   m_Layer: 0
   m_Name: axe_2handed
-  m_TagString: Weapon
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,8 +750,12 @@ MonoBehaviour:
   type: 0
   damage: 30
   rate: 0.5
+  maxAmmo: 0
+  curAmmo: 0
   meleeArea: {fileID: 771563809221746583}
   trailEffect: {fileID: 2212114099606580534}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!65 &771563809221746583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -767,7 +775,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 1, z: 0.5}
+  m_Size: {x: 1.4, y: 0.9, z: 0.5}
   m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!1 &3619723944767641563
 GameObject:
@@ -924,7 +932,7 @@ GameObject:
   - component: {fileID: 388290723531311461}
   m_Layer: 0
   m_Name: axe_1handed
-  m_TagString: Weapon
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1010,8 +1018,12 @@ MonoBehaviour:
   type: 0
   damage: 20
   rate: 0.7
+  maxAmmo: 0
+  curAmmo: 0
   meleeArea: {fileID: 388290723531311461}
   trailEffect: {fileID: 4312388981297000804}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!65 &388290723531311461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1031,7 +1043,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.1, z: 0.5}
+  m_Size: {x: 0.9, y: 0.9, z: 0.5}
   m_Center: {x: 0.3, y: 0.7, z: 0}
 --- !u!1 &4119281276871148055
 GameObject:

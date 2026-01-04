@@ -5,16 +5,25 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
+    public GameObject Explosion; //FireBall 폭발 효과
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic") //
         {
-            Destroy(gameObject, 3);
-        }
-        else if (collision.gameObject.tag == "Wall")
-        {
+            if (gameObject.tag == "FireBall") // 태그가 FireBall이면 폭발 효과를 남김
+            {
+                GameObject explosion = Instantiate(Explosion,transform.position,transform.rotation);
+
+                Destroy(explosion, 2f); // 2초 후 폭발 효과 삭제
+            }
+
             Destroy(gameObject);
+        }
+        else if(other.gameObject.layer == 10 && gameObject.tag == "FireBall") // FireBall 관련 같은 내용인데 적과 충돌 했을때
+        {
+            GameObject explosion = Instantiate(Explosion, transform.position, transform.rotation);
+            Destroy(explosion, 2f);
         }
     }
 }

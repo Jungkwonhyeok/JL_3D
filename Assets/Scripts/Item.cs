@@ -4,30 +4,27 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type {Weapon, Ammo, Coin, Heart};
+    public enum Type { Weapon, Ammo, Coin, Heart };
 
     public Type type;
     public int value;
 
-
-
     Rigidbody rigid;
     SphereCollider sphereCollider;
 
-    void Awake() //아이템 물리 충돌 제거
+    void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
     }
-
     void Update()
     {
-        transform.Rotate(Vector3.up * 20 *  Time.deltaTime); //아이템 obj 회전
+        transform.Rotate(Vector3.up * 20 * Time.deltaTime); //아이템 obj 회전
     }
 
-    void OnCollisionEnter(Collision collision) //함수에서 변수를 호출, 물리효과 변경
+    void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor") //바닥에 충돌 시 현재 위치를 고정 시키고 콜라이더를 끈다
         {
             rigid.isKinematic = true;
             sphereCollider.enabled = false;

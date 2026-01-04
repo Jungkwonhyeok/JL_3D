@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public enum Type {A, B, C}; // 어떤 타입의 Enemy인지 구분 해주는 열거형 변수
+    public Type enemyType;
     public int maxHealth; //최대 체력
     public int curHealth; //현재 체력
     public Transform Target; // 추적 할 타겟
@@ -49,19 +51,34 @@ public class Enemy : MonoBehaviour
         if (isChase)
         {
             rigid.velocity = Vector3.zero;
-            rigid.angularVelocity = Vector3.zero;
+            rigid.angularVelocity = Vector3.zero; //
         }
     }
 
     void Targerting() //타겟팅을 위한 함수
     {
-        float targetRadius = 1.5f; //SphereCast의 반지름
-        float targetRange = 3f; //SphereCast의 길이
+        float targetRadius = 0; //SphereCast의 반지름
+        float targetRange = 0; //SphereCast의 길이
+
+        switch (enemyType) //타입에 따라 SphereCast의 반지름과 길이를 정해줌
+        {
+            case Type.A:
+                targetRadius = 1.5f;
+                targetRange = 3f;
+                break;
+            case Type.B:
+                targetRadius = 1f;
+                targetRange = 10f;
+                break;
+            case Type.C:
+
+                break;
+        }
 
         RaycastHit[] raycastHits = 
             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
 
-        if(raycastHits.Length > 0 && !isAttack && curHealth >= 0) //cast 범위에 들어오고 공격하고 읶지 않을때
+        if(raycastHits.Length > 0 && !isAttack && curHealth > 0) //cast 범위에 들어오고 공격하고 읶지 않을때
         {
             StartCoroutine(Attack());
         }
@@ -73,11 +90,33 @@ public class Enemy : MonoBehaviour
         isAttack = true; //공격 하고 있는지 여부(O)
         anim.SetBool("isAttack", true);
 
-        yield return new WaitForSeconds(0.2f);
-        meleeArea.enabled = true; //0.2초 뒤 근접 공격 범위 활성화
+        switch (enemyType) //타입에 따라 어떤 공격을 할 건지 정해줌
+        {
+            case Type.A:
+                yield return new WaitForSeconds(0.2f);
+                meleeArea.enabled = true; //0.2초 뒤 근접 공격 범위 활성화
 
-        yield return new WaitForSeconds(1f);
-        meleeArea.enabled = false; //1초 뒤 근접 공격 범위 비활성화
+                yield return new WaitForSeconds(1f);
+                meleeArea.enabled = false; //1초 뒤 근접 공격 범위 비활성화
+
+                yield return new WaitForSeconds(1f); // 1초 동안 멈춤
+                break;
+            case Type.B:
+                yield return new WaitForSeconds(0.1f);
+                if (curHealth > 0)
+                    rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //정면으로 20만큼 힘을 더 해줌 (데쉬)
+                meleeArea.enabled = true; // 근접 공격 범위 활성화
+
+                yield return new WaitForSeconds(0.5f);
+                rigid.velocity = Vector3.zero; // 데쉬 후 정지 시켜줌
+                meleeArea.enabled = false ; //근접 공격 범위 비활성화
+
+                yield return new WaitForSeconds(2f); // 2초 동안 멈춤
+                break;
+            case Type.C:
+
+                break;
+        }
 
         isChase = true; //추적 활성화
         isAttack = false; //공격 하고 있는지 여부(X)
