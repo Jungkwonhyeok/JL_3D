@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic")
+        if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic") //
         {
             if (gameObject.tag == "FireBall") // 태그가 FireBall이면 폭발 효과를 남김
             {
