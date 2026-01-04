@@ -9,7 +9,11 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (collision.gameObject.tag == "Floor")
+=======
+        if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic")
+>>>>>>> parent of 83208dd (데쉬 하는 적 구현(수정 필요))
 =======
         if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic")
 >>>>>>> parent of 83208dd (데쉬 하는 적 구현(수정 필요))
