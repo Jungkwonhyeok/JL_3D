@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Type {A, B, C}; // 어떤 타입의 Enemy인지 구분 해주는 열거형 변수
+    public enum Type { A, B, C }; // 어떤 타입의 Enemy인지 구분 해주는 열거형 변수
     public Type enemyType;
     public int maxHealth; //최대 체력
     public int curHealth; //현재 체력
@@ -46,13 +46,12 @@ public class Enemy : MonoBehaviour
             nav.isStopped = !isChase; //추적 중이지 않으면 멈춘다
         }
     }
-    void FreezVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
+    void FreezeVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
     {
-        if (isChase)
-        {
-            rigid.velocity = Vector3.zero;
-            rigid.angularVelocity = Vector3.zero; //
-        }
+        //물리력이 추적을 방해하지 않아야한다고 했으므로 불필요한 거 없이
+        //추적하는 에너미의 움직임을 아얘 방해하지 않고 물리 회전 정도를 아예 0으로 만들어버려야 한다고
+        //판단하여 남긴 것
+        rigid.angularVelocity = Vector3.zero;
     }
 
     void Targerting() //타겟팅을 위한 함수
@@ -75,10 +74,10 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        RaycastHit[] raycastHits = 
+        RaycastHit[] raycastHits =
             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
 
-        if(raycastHits.Length > 0 && !isAttack && curHealth > 0) //cast 범위에 들어오고 공격하고 읶지 않을때
+        if (raycastHits.Length > 0 && !isAttack && curHealth > 0) //cast 범위에 들어오고 공격하고 읶지 않을때
         {
             StartCoroutine(Attack());
         }
@@ -94,9 +93,11 @@ public class Enemy : MonoBehaviour
         {
             case Type.A:
                 yield return new WaitForSeconds(0.2f);
+
                 meleeArea.enabled = true; //0.2초 뒤 근접 공격 범위 활성화
 
                 yield return new WaitForSeconds(1f);
+
                 meleeArea.enabled = false; //1초 뒤 근접 공격 범위 비활성화
 
                 yield return new WaitForSeconds(1f); // 1초 동안 멈춤
@@ -105,11 +106,14 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 if (curHealth > 0)
                     rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //정면으로 20만큼 힘을 더 해줌 (데쉬)
+
                 meleeArea.enabled = true; // 근접 공격 범위 활성화
 
                 yield return new WaitForSeconds(0.5f);
                 rigid.velocity = Vector3.zero; // 데쉬 후 정지 시켜줌
-                meleeArea.enabled = false ; //근접 공격 범위 비활성화
+
+                meleeArea.enabled = false; //근접 공격 범위 비활성화
+
 
                 yield return new WaitForSeconds(2f); // 2초 동안 멈춤
                 break;
@@ -126,12 +130,12 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         Targerting();
-        FreezVelocity();
+        FreezeVelocity();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Melee") //근접무기와 충돌하면 무기 데미지 만큼 현재 체력을 깎는다
+        if (other.tag == "Melee") //근접무기와 충돌하면 무기 데미지 만큼 현재 체력을 깎는다
         {
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
@@ -139,7 +143,7 @@ public class Enemy : MonoBehaviour
 
             StartCoroutine(OnDamage(reactVec));
         }
-        else if(other.tag == "Bullet" || other.tag == "FireBall") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
+        else if (other.tag == "Bullet" || other.tag == "FireBall") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
         {
             Bullet bullet = other.GetComponent<Bullet>();
             curHealth -= bullet.damage;
@@ -195,7 +199,8 @@ public class Enemy : MonoBehaviour
             {
                 r.material.color = Color.gray; //죽으면 색을 그레이로 바꿈
             }
-            meleeArea.enabled = false; //
+            if (meleeArea != null)
+                meleeArea.enabled = false; //
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
             isChase = false;
             nav.enabled = false; //근접 공격 범위 비활성화
