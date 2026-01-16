@@ -5,11 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
+    public bool isMelee; //근접 무기인지 원거리 무기인지 여부
+
     public GameObject Explosion; //FireBall 폭발 효과
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic" && gameObject.tag != "EnemyBullet") //
+        if (!isMelee && other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic") //근접 무기가 아니고, 흑마법(마법사 Lv3)이 아니면 벽에 충돌 시 obj삭제
         {
             if (gameObject.tag == "FireBall") // 태그가 FireBall이면 폭발 효과를 남김
             {

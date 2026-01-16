@@ -11,8 +11,12 @@ public class Enemy : MonoBehaviour
     public int curHealth; //현재 체력
     public Transform Target; // 추적 할 타겟
     public BoxCollider meleeArea; //근접 공격 범위
-    public bool isChase; //추적하고 있는지 여부
-    public bool isAttack; //공격중인지
+    public GameObject bullet; //총알 obj(Enemy C 관련)
+    public GameObject crossbow; //석궁obj(Enemy C 관련)
+    public Transform bulletPos; //총알 발사 위치(Enemy C 관련)
+
+    bool isChase; //추적하고 있는지 여부
+    bool isAttack; //공격중인지
 
     Rigidbody rigid;
     CapsuleCollider capsuleCollider;
@@ -46,11 +50,12 @@ public class Enemy : MonoBehaviour
             nav.isStopped = !isChase; //추적 중이지 않으면 멈춘다
         }
     }
-    void FreezeVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
+    void FreezVelocity() // 물리력이 추적을 방해하지 않도록 하는 함수
     {
-        //물리력이 추적을 방해하지 않아야한다고 했으므로 불필요한 거 없이
-        //추적하는 에너미의 움직임을 아얘 방해하지 않고 물리 회전 정도를 아예 0으로 만들어버려야 한다고
-        //판단하여 남긴 것
+        if (isChase)
+        {
+            rigid.velocity = Vector3.zero;
+        }
         rigid.angularVelocity = Vector3.zero;
     }
 
@@ -70,7 +75,8 @@ public class Enemy : MonoBehaviour
                 targetRange = 10f;
                 break;
             case Type.C:
-
+                targetRadius = 0.5f;
+                targetRange = 20f;
                 break;
         }
 
@@ -87,17 +93,17 @@ public class Enemy : MonoBehaviour
     {
         isChase = false; //추적 비활성화
         isAttack = true; //공격 하고 있는지 여부(O)
+        if (crossbow != null) //석궁obj 각도 조절해주는 용도 (Enemy C)
+            crossbow.transform.Rotate(55,0,0);
         anim.SetBool("isAttack", true);
 
         switch (enemyType) //타입에 따라 어떤 공격을 할 건지 정해줌
         {
             case Type.A:
                 yield return new WaitForSeconds(0.2f);
-
                 meleeArea.enabled = true; //0.2초 뒤 근접 공격 범위 활성화
 
                 yield return new WaitForSeconds(1f);
-
                 meleeArea.enabled = false; //1초 뒤 근접 공격 범위 비활성화
 
                 yield return new WaitForSeconds(1f); // 1초 동안 멈춤
@@ -106,19 +112,22 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
                 if (curHealth > 0)
                     rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //정면으로 20만큼 힘을 더 해줌 (데쉬)
-
                 meleeArea.enabled = true; // 근접 공격 범위 활성화
 
                 yield return new WaitForSeconds(0.5f);
                 rigid.velocity = Vector3.zero; // 데쉬 후 정지 시켜줌
-
                 meleeArea.enabled = false; //근접 공격 범위 비활성화
-
 
                 yield return new WaitForSeconds(2f); // 2초 동안 멈춤
                 break;
             case Type.C:
+                yield return new WaitForSeconds(0.1f);
+                GameObject instantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation); //총알을 발사 위치에 생성해줌
+                Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>(); //생선 된 총알의 rigid를 저장
+                rigidBullet.velocity = transform.forward * 25; //정면으로 25만큼 힘을 줌
 
+                yield return new WaitForSeconds(2.5f);
+                crossbow.transform.Rotate(-55, 0, 0); //석궁obj의 각도를 원상복귀 시켜줌
                 break;
         }
 
@@ -130,7 +139,7 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         Targerting();
-        FreezeVelocity();
+        FreezVelocity();
     }
 
     void OnTriggerEnter(Collider other)
@@ -199,8 +208,10 @@ public class Enemy : MonoBehaviour
             {
                 r.material.color = Color.gray; //죽으면 색을 그레이로 바꿈
             }
+
             if (meleeArea != null)
-                meleeArea.enabled = false; //
+                meleeArea.enabled = false; 
+
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
             isChase = false;
             nav.enabled = false; //근접 공격 범위 비활성화

@@ -414,6 +414,10 @@ public class Player : MonoBehaviour
             {
                 Bullet enemyBullet = other.GetComponent<Bullet>();
                 health -= enemyBullet.damage;
+
+                if(other.GetComponent<Rigidbody>() != null) //적의 총알을 맞으면 총알 obj 삭제 시켜줌
+                    Destroy(other.gameObject);
+
                 StartCoroutine(OnDamage());
             }
         }
