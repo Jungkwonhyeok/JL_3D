@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum Type { Melee, Range, Magic }; // 무기 타입 (근접 / 원거리 / 마법)
+    public enum Type { Melee, Range, Magic, Shield }; // 무기 타입 (근접 / 원거리 / 마법 / 쉴드)
     public Type type;
     public int damage;     // 무기 공격력
     public float rate;     // 공격 속도(공격 간 딜레이)
-    public int maxAmmo; 
+    public int maxAmmo;
     public int curAmmo;
+    public bool isShield;
 
     public BoxCollider meleeArea;      // 근접 공격 판정 범위
     public TrailRenderer trailEffect;  // 근접 공격 이펙트
+    public BoxCollider shieldArea; // 쉴드 범위
     public Transform bulletPos;
     public GameObject bullet;
 
@@ -36,6 +38,10 @@ public class Weapon : MonoBehaviour
                 return;
             }
             StartCoroutine("Shot"); // 아니면 원거리 공격 코루틴 실행
+        }
+        else if(type == Type.Shield)
+        {
+            StartCoroutine("Shield");
         }
     }
 
@@ -71,7 +77,7 @@ public class Weapon : MonoBehaviour
         Physics.Raycast(bulletPos.position, bulletPos.forward, out rayHit, 1000); //bulletPos에서 ray를 발사함
 
         Vector3 MagicPos = rayHit.point; //ray와 충돌한 지점을 마법이 소환 될 위치로 저장
-        MagicPos.y = 0.5f; //(y축을 0.5f로 해야 마법진이 다 보임)
+        MagicPos.y = 1f; //(y축을 1f로 해야 마법진이 다 보임)
 
         yield return new WaitForSeconds(0.1f); //0.1초 후 마법 소환
         GameObject intantMagic = Instantiate(bullet, MagicPos, Quaternion.identity);
@@ -80,4 +86,20 @@ public class Weapon : MonoBehaviour
         Destroy(intantMagic);
     }
     
+    IEnumerator Shield()
+    {
+        if(isShield == false)
+        {
+            yield return new WaitForSeconds(0.1f);
+            shieldArea.enabled = true;
+            isShield = true;
+        }
+        else if(isShield == true)
+        {
+            shieldArea.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            isShield = false;
+        }
+
+    }
 }

@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public int maxAmmo; // 최대 화살 수
     public int maxCoin; // 최대 코인 수
     public int maxHealth; // 최대 체력
+    public int exp; // 경험치
+    public int level = 1; // 플레이어 레벨
 
     float moneX;
     float moveZ;
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
         Swap();
         Attack();
         Interation();
+        LevelUp();
     }
 
     public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour
 
         foreach (Transform child in GetComponentsInChildren<Transform>()) // 자신 + 모든 하위 오브젝트 순회
         {
-            if (child.CompareTag("Weapon") || child.CompareTag("Melee")) // 무기 태그만 수집
+            if (child.CompareTag("Weapon") || child.CompareTag("Melee") || child.CompareTag("Shield")) // 무기, 근접, 쉴드 태그만 수집
             {
                 weaponList.Add(child.gameObject);
             }
@@ -109,7 +112,7 @@ public class Player : MonoBehaviour
         Run = Input.GetButton("Run");
         jump = Input.GetButtonDown("Jump");
         reload = Input.GetButtonDown("Reload");
-        fire1 = Input.GetButton("Fire1");
+        fire1 = Input.GetButtonDown("Fire1");
         interation = Input.GetButtonDown("Interation");
         swap1 = Input.GetButtonDown("Swap1");
         swap2 = Input.GetButtonDown("Swap2");
@@ -124,7 +127,7 @@ public class Player : MonoBehaviour
             move = dodge;
         }
 
-        if (isSwap || isReload || !isFireReady) // 특정 상태 중 이동 제한
+        if (isSwap || isReload || !isFireReady || (equipWeapon != null && equipWeapon.isShield)) // 특정 상태 중 이동 제한
             move = Vector3.zero;
 
         if (!isBorder) // 벽에 막히지 않았을 때만 이동
@@ -173,21 +176,33 @@ public class Player : MonoBehaviour
 
     void Attack() // 공격 처리
     {
-        if (equipWeapon == null)
+        // 무기가 없으면 공격 불가
+        if (equipWeapon == null) 
         {
             fireDelay = 10;
             return;
         }
 
+        // 공격 쿨타임 계산
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate <= fireDelay;
 
         if (fire1 && isFireReady && !isDodge && !isSwap && !isReload)
         {
+            // 원거리 무기인데 탄약이 없으면 공격 불가
             if (equipWeapon.type == Weapon.Type.Range && equipWeapon.curAmmo <= 0)
                 return;
-            equipWeapon.Use();
-            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee || equipWeapon.type == Weapon.Type.Magic ? "doSwing" : "doShot");
+
+            equipWeapon.Use(); // 무기 사용
+
+            // 무기 타입에 따른 애니메이션
+            if (equipWeapon.type != Weapon.Type.Shield)
+                anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee || equipWeapon.type == Weapon.Type.Magic ? "doSwing" : "doShot");
+
+            else
+            {
+                anim.SetBool("doShield", !equipWeapon.isShield);
+            }
             fireDelay = 0;
         }
     }
@@ -197,7 +212,7 @@ public class Player : MonoBehaviour
         if (equipWeapon == null)
             return;
 
-        if (equipWeapon.type == Weapon.Type.Melee || equipWeapon.type == Weapon.Type.Magic)
+        if (equipWeapon.type != Weapon.Type.Range)
             return;
 
         if (reload && !isJump && !isSwap && isFireReady && ammo != 0 && equipWeapon.curAmmo != equipWeapon.maxAmmo && !isReload)
@@ -244,86 +259,96 @@ public class Player : MonoBehaviour
 
         int weaponIndex = -1;
 
-        switch (SaveitemValue) // 현재 캐릭터 타입에 따른 무기 분기
+        if (!isJump && !isDodge && !(equipWeapon != null && equipWeapon.isShield))
         {
-            case 0: // 기사
-                if (swap1 && !isJump && !isDodge)
-                {
-                    weaponIndex = 0;
-                    equipWeaponIndex = 0;
-                }
-                if (swap2 && !isJump && !isDodge)
-                {
-                    weaponIndex = 3;
-                    equipWeaponIndex = 1;
-                }
-                break;
-            case 1: // 도적
-                if (swap1 && !isJump && !isDodge)
-                {
-                    weaponIndex = 0;
-                    equipWeaponIndex = 0;
-                }
-                if (swap2 && !isJump && !isDodge)
-                {
-                    weaponIndex = 2;
-                    equipWeaponIndex = 1;
-                }
-                break;
-            case 2: // 궁수
-                if (swap1 && !isJump && !isDodge)
-                {
-                    weaponIndex = 0;
-                    equipWeaponIndex = 0;
-                }
-                if (swap2 && !isJump && !isDodge)
-                {
-                    return;
-                }
-                break;
-            case 3: // 바바리안
-                if (swap1 && !isJump && !isDodge)
-                {
-                    weaponIndex = 0;
-                    equipWeaponIndex = 0;
-                }
-                if (swap2 && !isJump && !isDodge)
-                {
-                    weaponIndex = 2;
-                    equipWeaponIndex = 1;
-                }
-                break;
-            case 4: // 마법사
-                if (swap1 && !isJump && !isDodge)
-                {
-                    weaponIndex = 0;
-                    equipWeaponIndex = 0;
-                }
-                if (swap2 && !isJump && !isDodge)
-                {
-                    return;
-                }
-                break;
-        }
-
-        if ((swap1 || swap2) && !isJump && !isDodge)
-        {
-            if (equipWeapon != null)
+            switch (SaveitemValue) // 현재 캐릭터 타입에 따른 무기 분기
             {
-                render = equipWeapon.GetComponentInChildren<Renderer>();
-                render.GetComponentInChildren<Renderer>().enabled = false;
+                case 0: // 기사
+                    if (swap1)
+                    {
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
+                        equipWeaponIndex = 0;
+                    }
+                    if (swap2)
+                    {
+                        if (level == 1)
+                            return;
+
+                        weaponIndex = (level == 2 ? 3 : level == 3 ? 4 : 4);
+                        equipWeaponIndex = 1;
+                    }
+                    break;
+                case 1: // 도적
+                    if (swap1)
+                    {
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        equipWeaponIndex = 0;
+                    }
+                    if (swap2)
+                    {
+                        if (level == 1 || level == 2)
+                            return;
+
+                        weaponIndex = 2;
+                        equipWeaponIndex = 1;
+                    }
+                    break;
+                case 2: // 궁수
+                    if (swap1)
+                    {
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        equipWeaponIndex = 0;
+                    }
+                    if (swap2)
+                    {
+                        return;
+                    }
+                    break;
+                case 3: // 바바리안
+                    if (swap1)
+                    {
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        equipWeaponIndex = 0;
+                    }
+                    if (swap2)
+                    {
+                        if (level == 1 || level == 2)
+                            return;
+                        weaponIndex = 2;
+                        equipWeaponIndex = 1;
+                    }
+                    break;
+                case 4: // 마법사
+                    if (swap1)
+                    {
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
+                        equipWeaponIndex = 0;
+                    }
+                    if (swap2)
+                    {
+                        return;
+                    }
+                    break;
             }
 
-            equipWeapon = weapons[weaponIndex].GetComponentInChildren<Weapon>();
+            if ((swap1 || swap2))
+            {
+                if (equipWeapon != null)
+                {
+                    render = equipWeapon.GetComponentInChildren<Renderer>();
+                    render.GetComponentInChildren<Renderer>().enabled = false;
+                }
+                equipWeapon = weapons[weaponIndex].GetComponentInChildren<Weapon>();
 
-            render = equipWeapon.GetComponentInChildren<Renderer>();
-            render.GetComponentInChildren<Renderer>().enabled = true;
+                render = equipWeapon.GetComponentInChildren<Renderer>();
+                render.GetComponentInChildren<Renderer>().enabled = true;
 
-            anim.SetTrigger("doSwap");
+                anim.SetTrigger("doSwap");
 
-            isSwap = true;
+                isSwap = true;
 
-            Invoke("SwapOut", 0.5f);
+                Invoke("SwapOut", 0.5f);
+            }
         }
     }
 
@@ -358,9 +383,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    void LevelUp()
+    {
+        if(exp == 100)
+        {
+            level++;
+            exp = 0;
+            equipWeaponIndex = -1;
+        }
+    }
+
     void FreezRotation() // 물리 회전 방지
     {
         rigid.angularVelocity = Vector3.zero;
+
+        if (equipWeapon != null && equipWeapon.isShield)
+        {
+            rigid.velocity = Vector3.zero;
+        }
     }
 
     void StopToWall() // 전방 벽 충돌 감지

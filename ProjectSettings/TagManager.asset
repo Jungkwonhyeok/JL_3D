@@ -14,6 +14,7 @@ TagManager:
   - DarkMagic
   - Enemy
   - EnemyBullet
+  - Shield
   layers:
   - Default
   - TransparentFX

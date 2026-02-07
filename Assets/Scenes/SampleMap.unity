@@ -6543,8 +6543,10 @@ MonoBehaviour:
   rate: 0
   maxAmmo: 0
   curAmmo: 0
+  isShield: 0
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &194502701
@@ -8260,8 +8262,10 @@ MonoBehaviour:
   rate: 0.5
   maxAmmo: 0
   curAmmo: 0
+  isShield: 0
   meleeArea: {fileID: 236612430}
   trailEffect: {fileID: 2006612217}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &236612432
@@ -24148,6 +24152,7 @@ MonoBehaviour:
   enemyType: 2
   maxHealth: 80
   curHealth: 80
+  Eexp: 0
   Target: {fileID: 1231510863}
   meleeArea: {fileID: 0}
   bullet: {fileID: 6327969108039493901, guid: bb1cdc1ac26e0174ebdb7872747492bf, type: 3}
@@ -37548,7 +37553,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357429060}
@@ -40728,8 +40733,10 @@ MonoBehaviour:
   rate: 0.5
   maxAmmo: 0
   curAmmo: 0
+  isShield: 0
   meleeArea: {fileID: 1105702057}
   trailEffect: {fileID: 767320710}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &1105702059
@@ -45208,7 +45215,7 @@ Transform:
   m_GameObject: {fileID: 1231510862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -571.4, y: -11.91, z: 259}
+  m_LocalPosition: {x: -490.8, y: -11.91, z: 194.1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45293,6 +45300,8 @@ MonoBehaviour:
   maxAmmo: 999
   maxCoin: 99999
   maxHealth: 100
+  exp: 0
+  level: 1
   HeroChanges:
     Prefab:
     - {fileID: 7223859310506569265, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
@@ -56472,8 +56481,10 @@ MonoBehaviour:
   rate: 0.5
   maxAmmo: 0
   curAmmo: 0
+  isShield: 0
   meleeArea: {fileID: 1535285071}
   trailEffect: {fileID: 281016921}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &1535285073
@@ -66545,6 +66556,7 @@ MonoBehaviour:
   enemyType: 1
   maxHealth: 100
   curHealth: 100
+  Eexp: 0
   Target: {fileID: 1231510863}
   meleeArea: {fileID: 3348615635307941712}
   bullet: {fileID: 0}
@@ -70259,8 +70271,10 @@ MonoBehaviour:
   rate: 0
   maxAmmo: 0
   curAmmo: 0
+  isShield: 0
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!23 &1916064739
@@ -83543,6 +83557,7 @@ MonoBehaviour:
   enemyType: 0
   maxHealth: 50
   curHealth: 50
+  Eexp: 0
   Target: {fileID: 1231510863}
   meleeArea: {fileID: 8935970151828840469}
   bullet: {fileID: 0}

@@ -11,7 +11,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isMelee && other.gameObject.tag == "Wall" && gameObject.tag != "DarkMagic") //근접 무기가 아니고, 흑마법(마법사 Lv3)이 아니면 벽에 충돌 시 obj삭제
+        if (!isMelee && 
+            (other.gameObject.tag == "Wall" || other.gameObject.tag == "Shield") && 
+            gameObject.tag != "DarkMagic") //근접 무기가 아니고, 흑마법(마법사 Lv3)이 아니면 벽에 충돌 시 obj삭제
         {
             if (gameObject.tag == "FireBall") // 태그가 FireBall이면 폭발 효과를 남김
             {

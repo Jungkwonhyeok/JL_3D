@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Type enemyType;
     public int maxHealth; //최대 체력
     public int curHealth; //현재 체력
+    public int Eexp;
     public Transform Target; // 추적 할 타겟
     public BoxCollider meleeArea; //근접 공격 범위
     public GameObject bullet; //총알 obj(Enemy C 관련)
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     Renderer[] renders;
     NavMeshAgent nav;
     Animator anim;
+    Player player;
 
     float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정
     float hitDelay = 1f; // 마법 영역에서 데미지가 들어오고 얼마나 지났는지 저장하는 변수
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
         renders = GetComponentsInChildren<Renderer>();
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+        player = Target.GetComponent<Player>();
 
         Invoke("ChaseStart", 2);
     }
@@ -55,6 +58,7 @@ public class Enemy : MonoBehaviour
         if (isChase)
         {
             rigid.velocity = Vector3.zero;
+            rigid.constraints = RigidbodyConstraints.FreezeAll;
         }
         rigid.angularVelocity = Vector3.zero;
     }
@@ -110,11 +114,13 @@ public class Enemy : MonoBehaviour
                 break;
             case Type.B:
                 yield return new WaitForSeconds(0.1f);
+                rigid.constraints = RigidbodyConstraints.FreezeRotation;
                 if (curHealth > 0)
                     rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //정면으로 20만큼 힘을 더 해줌 (데쉬)
                 meleeArea.enabled = true; // 근접 공격 범위 활성화
 
                 yield return new WaitForSeconds(0.5f);
+                rigid.constraints = RigidbodyConstraints.FreezeAll;
                 rigid.velocity = Vector3.zero; // 데쉬 후 정지 시켜줌
                 meleeArea.enabled = false; //근접 공격 범위 비활성화
 
@@ -210,8 +216,8 @@ public class Enemy : MonoBehaviour
             }
 
             if (meleeArea != null)
-                meleeArea.enabled = false; 
-
+                meleeArea.enabled = false;
+            player.exp += Eexp;
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
             isChase = false;
             nav.enabled = false; //근접 공격 범위 비활성화
@@ -219,6 +225,7 @@ public class Enemy : MonoBehaviour
 
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
+            rigid.constraints = RigidbodyConstraints.FreezeRotation;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse); //넉백 시킴
 
             Destroy(gameObject, 4f); //4초 후 obj 삭제
