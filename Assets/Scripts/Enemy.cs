@@ -36,11 +36,9 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         player = Target.GetComponent<Player>();
-
-        Invoke("ChaseStart", 2);
     }
 
-    void ChaseStart() // 추적 시작하는 함수
+    public void ChaseStart() // 추적 시작하는 함수
     {
         isChase = true;
         anim.SetBool("isWalk", true);
@@ -227,6 +225,8 @@ public class Enemy : MonoBehaviour
             reactVec += Vector3.up;
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse); //넉백 시킴
+
+            GetComponentInParent<StageManger>().OnEnemyDie();
 
             Destroy(gameObject, 4f); //4초 후 obj 삭제
         }

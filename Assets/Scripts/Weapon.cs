@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    Player player;
     public enum Type { Melee, Range, Magic, Shield }; // 무기 타입 (근접 / 원거리 / 마법 / 쉴드)
     public Type type;
     public int damage;     // 무기 공격력
@@ -13,17 +15,27 @@ public class Weapon : MonoBehaviour
     public bool isShield;
 
     public BoxCollider meleeArea;      // 근접 공격 판정 범위
-    public TrailRenderer trailEffect;  // 근접 공격 이펙트
+    public GameObject meleeAura;    // 근접무기 기본 효과(Max Lv)
+    public GameObject shieldAura;    // 방패 기본 효과(Max Lv)
+    public GameObject trailEffect;  // 근접 공격 이펙트
     public BoxCollider shieldArea; // 쉴드 범위
     public Transform bulletPos;
     public GameObject bullet;
 
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
     public void Use() // 플레이어가 공격 입력 시 무기를 사용하는 함수
     {
         if (type == Type.Melee)
         {
             StopCoroutine("Swing");   // 이전 공격 코루틴 중단
             StartCoroutine("Swing");  // 근접 공격 코루틴 실행
+
+            if(player.level >= 3 && player.SaveitemValue == 0)
+                StartCoroutine("SwingShot"); //원거리 공격 코루틴 실행
         }
         else if(type == Type.Range && curAmmo > 0)
         {
@@ -50,15 +62,15 @@ public class Weapon : MonoBehaviour
         // 일정 시간 후 공격 판정과 이펙트 활성화
         yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = true;
-        trailEffect.enabled = true;
+        trailEffect.SetActive(true);
 
         // 공격 판정 유지 시간 종료
         yield return new WaitForSeconds(0.2f);
         meleeArea.enabled = false;
 
         // 공격 이펙트 종료
-        yield return new WaitForSeconds(0.2f);
-        trailEffect.enabled = false;
+        yield return new WaitForSeconds(0.3f);
+        trailEffect.SetActive(false);
     }
 
     IEnumerator Shot() //원거리 공격 시 총알 발사하는 코루틴
@@ -93,13 +105,38 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             shieldArea.enabled = true;
             isShield = true;
+            if(player.level >= 3)
+                trailEffect.SetActive(true);
         }
         else if(isShield == true)
         {
             shieldArea.enabled = false;
             yield return new WaitForSeconds(0.1f);
             isShield = false;
+            if (player.level >= 3)
+                trailEffect.SetActive(false);
         }
 
+    }
+
+    IEnumerator SwingShot() //근거리 무기로 원거리 공격
+    {
+        GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation); //특정 위치에 Bullet소환
+        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
+        bulletRigid.velocity = bulletPos.forward * 10; //특정위치 기준 앞으로 10만큼 속도를 더해줘라
+
+        // 일정 시간 후 공격 판정과 이펙트 활성화
+        yield return new WaitForSeconds(0.3f);
+        meleeArea.enabled = true;
+        trailEffect.SetActive(true);
+
+        // 공격 판정 유지 시간 종료
+        yield return new WaitForSeconds(0.2f);
+        meleeArea.enabled = false;
+
+        // 공격 이펙트 종료
+        yield return new WaitForSeconds(0.3f);
+        trailEffect.SetActive(false);
+        Destroy (intantBullet);
     }
 }

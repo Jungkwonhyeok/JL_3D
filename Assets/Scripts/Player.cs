@@ -266,11 +266,17 @@ public class Player : MonoBehaviour
                 case 0: // 기사
                     if (swap1)
                     {
+                         if (equipWeapon != null && equipWeapon.shieldAura != null)
+                                equipWeapon.shieldAura.SetActive(false);
+
                         weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
                         equipWeaponIndex = 0;
                     }
                     if (swap2)
                     {
+                        if(equipWeapon != null && equipWeapon.meleeAura != null)
+                            equipWeapon.meleeAura.SetActive(false); // 무기 특수 효과 비활성화(max Lv)
+
                         if (level == 1)
                             return;
 
@@ -342,6 +348,11 @@ public class Player : MonoBehaviour
 
                 render = equipWeapon.GetComponentInChildren<Renderer>();
                 render.GetComponentInChildren<Renderer>().enabled = true;
+
+                if(level >= 3 && swap1 && SaveitemValue == 0)
+                    equipWeapon.meleeAura.SetActive(true); // 무기 특수 효과 활성화(max Lv)
+                else if (level >= 3 && swap2 && SaveitemValue == 0)
+                    equipWeapon.shieldAura.SetActive(true); // 무기 특수 효과 활성화(max Lv)
 
                 anim.SetTrigger("doSwap");
 
