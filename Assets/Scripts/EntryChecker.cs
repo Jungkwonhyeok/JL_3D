@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EntryChecker : MonoBehaviour
 {
-    StageManger stageManger;
+    StageManager stageManger;
 
     private void Awake()
     {
-        stageManger = GetComponentInParent<StageManger>();
+        stageManger = GetComponentInParent<StageManager>();
     }
     private void OnTriggerExit(Collider other)
     {

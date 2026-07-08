@@ -307,6 +307,7 @@ Transform:
   - {fileID: 623639217}
   - {fileID: 495547236}
   - {fileID: 1873256629}
+  - {fileID: 136205779}
   m_Father: {fileID: 125024745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &15097311
@@ -333,6 +334,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7febed3aba34ca349a5669cf26ff39de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rewards:
+  - {fileID: 2414940857110661781, guid: 6ca6c559288e2ac4fb25fc902660560b, type: 3}
+  - {fileID: 149870043854077238, guid: 28db19322af04f74d87aac0ed0f5afc5, type: 3}
+  - {fileID: 998062344085040349, guid: c0c8b3634235a464c90bb60b4bd40242, type: 3}
+  - {fileID: 7882537132810645926, guid: 747c50eddcba68f48a142188b02b475a, type: 3}
+  - {fileID: 3002002187869441801, guid: 7e7164c10f87acd4dbfe6bb897f74913, type: 3}
+  - {fileID: 2910564565274614006, guid: 919a5cbf45da1c44b8474d857f813da0, type: 3}
+  - {fileID: 5761590810091425119, guid: 396b6d40b9f73e14dbdcf0a657dd7e23, type: 3}
+  - {fileID: 3746813657511896264, guid: f2f908adc8e78de40bb5aff7c4c8fa66, type: 3}
   curStageEnemys:
   - {fileID: 5246625804903560666}
   - {fileID: 502260097}
@@ -341,6 +351,7 @@ MonoBehaviour:
   - {fileID: 1271813462643526259}
   - {fileID: 1271813463300690354}
   - {fileID: 1271813462745773328}
+  RewardPos: {fileID: 136205779}
   curEnemyCount: 0
   isPlayerInStage: 0
   isCleared: 0
@@ -735,6 +746,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1485330337714189822, guid: f4dc4f61b80589b4a875aca888fdccca, type: 3}
   m_PrefabInstance: {fileID: 133277651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &136205778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136205779}
+  m_Layer: 0
+  m_Name: RewardPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &136205779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136205778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 80}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 15097310}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &159065648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8324205792104050654, guid: 9c261184ce6ce78429accbd6217abf7d, type: 3}
@@ -854,7 +896,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178502957}
   m_Enabled: 1
-  m_CellSize: {x: 4, y: 4, z: 4}
+  m_CellSize: {x: 4, y: 4, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 1
@@ -1264,6 +1306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2fb0ea7d898488a80fdd50cccecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 626359945770836001, guid: 6d6d351d7b8d3fd4b959a43ad1bbf273, type: 3}
   enemyType: 0
   maxHealth: 50
   curHealth: 50
@@ -2986,6 +3029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2fb0ea7d898488a80fdd50cccecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 626359945770836001, guid: 6d6d351d7b8d3fd4b959a43ad1bbf273, type: 3}
   enemyType: 0
   maxHealth: 50
   curHealth: 50
@@ -7575,13 +7619,14 @@ MonoBehaviour:
   hasWeapons: 0100000000
   followCamera: {fileID: 963194227}
   ammo: 990
-  coin: 0
+  coin: 10000
   health: 100
   maxAmmo: 999
   maxCoin: 99999
   maxHealth: 100
   exp: 0
   level: 1
+  nearSItem: {fileID: 0}
   HeroChanges:
     Prefab:
     - {fileID: 3528770846983355926, guid: ee077b5eb11224742aacf7251b8d718d, type: 3}
@@ -9776,6 +9821,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a52b42478ac6f33499c006ad17194b87, type: 3}
+--- !u!1 &1720493217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720493220}
+  - component: {fileID: 1720493219}
+  - component: {fileID: 1720493218}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1720493218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720493217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1720493219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720493217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1720493220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720493217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721501100
 GameObject:
   m_ObjectHideFlags: 0
@@ -13783,6 +13896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2fb0ea7d898488a80fdd50cccecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 626359945770836001, guid: 6d6d351d7b8d3fd4b959a43ad1bbf273, type: 3}
   enemyType: 0
   maxHealth: 50
   curHealth: 50
@@ -15280,3 +15394,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1231510863}
   - {fileID: 125024745}
+  - {fileID: 1720493220}

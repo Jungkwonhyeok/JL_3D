@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public class HeroChange // 캐릭터 교체에 사용되는 데이터 클래스 (프리팹 묶음용)
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     Renderer[] renders;
 
     GameObject nearObject; // 근처에 있는 상호작용 대상
+    public GameObject nearSItem; // 근처에 있는 상점 아이템
     Weapon equipWeapon; // 현재 장착 중인 무기 스크립트
     Renderer render; // 무기 렌더러 제어용
     int equipWeaponIndex = -1; // 현재 무기 인덱스 (-1 = 장착 없음)
@@ -87,6 +90,7 @@ public class Player : MonoBehaviour
         Attack();
         Interation();
         LevelUp();
+        Buy();
     }
 
     public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
@@ -394,6 +398,113 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Buy()
+    {
+        if (nearSItem != null)
+        {
+            ShopItem shopItem = nearSItem.GetComponent<ShopItem>();
+            ShopItem.Type ItemType = shopItem.type;
+
+            if (interation && nearSItem != null && coin >= shopItem.Price)
+            {
+                coin -= shopItem.Price;
+
+                switch (ItemType)
+                {
+                    case ShopItem.Type.Knight:
+                        for (int i = 0; i < hasWeapons.Length; i++)
+                        {
+                            hasWeapons[i] = false;
+                        }
+
+                        hasWeapons[0] = true;
+                        SaveitemValue = 0;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+
+                        Change();
+
+                        Invoke("FindWeapons", 0.1f);
+                        break;
+                    case ShopItem.Type.Rogue:
+                        for (int i = 0; i < hasWeapons.Length; i++)
+                        {
+                            hasWeapons[i] = false;
+                        }
+
+                        hasWeapons[1] = true;
+                        SaveitemValue = 1;
+
+                        Destroy(nearSItem);
+
+                        Change();
+
+                        Invoke("FindWeapons", 0.1f);
+                        break;
+                    case ShopItem.Type.Ranger:
+                        for (int i = 0; i < hasWeapons.Length; i++)
+                        {
+                            hasWeapons[i] = false;
+                        }
+
+                        hasWeapons[2] = true;
+                        SaveitemValue = 2;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+
+                        Change();
+
+                        Invoke("FindWeapons", 0.1f);
+                        break;
+                    case ShopItem.Type.Barbarian:
+                        for (int i = 0; i < hasWeapons.Length; i++)
+                        {
+                            hasWeapons[i] = false;
+                        }
+
+                        hasWeapons[3] = true;
+                        SaveitemValue = 3;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+
+                        Change();
+
+                        Invoke("FindWeapons", 0.1f);
+                        break;
+                    case ShopItem.Type.Mage:
+                        for (int i = 0; i < hasWeapons.Length; i++)
+                        {
+                            hasWeapons[i] = false;
+                        }
+
+                        hasWeapons[4] = true;
+                        SaveitemValue = 4;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+
+                        Change();
+
+                        Invoke("FindWeapons", 0.1f);
+                        break;
+                    case ShopItem.Type.Ammo:
+                        ammo += 10;
+                        if (ammo > maxAmmo)
+                            ammo = maxAmmo;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+                        break;
+                    case ShopItem.Type.Heart:
+                        health += 10;
+                        if (health > maxHealth)
+                            health = maxHealth;
+
+                        Destroy(nearSItem.transform.parent.gameObject);
+                        break;
+                }
+            }
+        }
+    }
+    
     void LevelUp()
     {
         if(exp == 100)

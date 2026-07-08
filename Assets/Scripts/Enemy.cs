@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject coin;
+
     public enum Type { A, B, C }; // 어떤 타입의 Enemy인지 구분 해주는 열거형 변수
     public Type enemyType;
     public int maxHealth; //최대 체력
@@ -18,6 +20,8 @@ public class Enemy : MonoBehaviour
 
     bool isChase; //추적하고 있는지 여부
     bool isAttack; //공격중인지
+    bool isDead;
+    bool isDeathProcessed; // Death 처리가 됐는지 확인 하는 함수
 
     Rigidbody rigid;
     CapsuleCollider capsuleCollider;
@@ -25,6 +29,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     Animator anim;
     Player player;
+    StageManager stageManger;
 
     float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정
     float hitDelay = 1f; // 마법 영역에서 데미지가 들어오고 얼마나 지났는지 저장하는 변수
@@ -36,6 +41,7 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         player = Target.GetComponent<Player>();
+        stageManger = GetComponentInParent<StageManager>();
     }
 
     public void ChaseStart() // 추적 시작하는 함수
@@ -148,11 +154,17 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (isDead || !stageManger.isPlayerInStage)
+            return;
+
         if (other.tag == "Melee") //근접무기와 충돌하면 무기 데미지 만큼 현재 체력을 깎는다
         {
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
             Vector3 reactVec = transform.position - other.transform.position; //현재 위치에 피격 위치를 뺴서 반작용 방향 구하기
+
+            if (curHealth <= 0)
+                isDead = true;
 
             StartCoroutine(OnDamage(reactVec));
         }
@@ -163,6 +175,8 @@ public class Enemy : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position; //현재 위치에 피격 위치를 뺴서 반작용 방향 구하기
             Destroy(other.gameObject);
 
+            if(curHealth <= 0)
+                isDead = true;
 
             StartCoroutine(OnDamage(reactVec));
         }
@@ -208,6 +222,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            if (isDeathProcessed) yield break; // 이미 처리됐으면 무시
+            isDeathProcessed = true;
+
             foreach (Renderer r in renders)
             {
                 r.material.color = Color.gray; //죽으면 색을 그레이로 바꿈
@@ -226,7 +243,9 @@ public class Enemy : MonoBehaviour
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse); //넉백 시킴
 
-            GetComponentInParent<StageManger>().OnEnemyDie();
+            stageManger.OnEnemyDie();
+
+            Instantiate(coin, transform.position, transform.rotation);
 
             Destroy(gameObject, 4f); //4초 후 obj 삭제
         }
