@@ -504,7 +504,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     void LevelUp()
     {
         if(exp == 100)
