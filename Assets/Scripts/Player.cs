@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     Animator anim;
     Renderer[] renders;
 
-    GameObject nearObject; // 근처에 있는 상호작용 대상
+    public GameObject nearObject; // 근처에 있는 상호작용 대상
     public GameObject nearSItem; // 근처에 있는 상점 아이템
     Weapon equipWeapon; // 현재 장착 중인 무기 스크립트
     Renderer render; // 무기 렌더러 제어용
@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
         isSwap = false;
     }
 
-    void Interation() // 무기 아이템 획득 처리
+    void Interation() // F키로 상호작용 해주는 함수
     {
         if (interation && nearObject != null && !isJump)
         {
@@ -395,6 +395,11 @@ public class Player : MonoBehaviour
 
                 Invoke("FindWeapons", 0.1f);
             }
+        }
+        if (interation && nearObject.name == "Portal")
+        {
+            Portal portal = nearObject.GetComponent<Portal>();
+            portal.NextStage("SampleMap");
         }
     }
 
