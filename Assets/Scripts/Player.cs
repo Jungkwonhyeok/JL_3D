@@ -14,6 +14,9 @@ public class HeroChange // 캐릭터 교체에 사용되는 데이터 클래스 (프리팹 묶음용)
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
+
     public float speed;
     public float jumpPower;
     public GameObject[] weapons; // 현재 캐릭터가 보유 중인 무기 오브젝트 배열
@@ -68,6 +71,7 @@ public class Player : MonoBehaviour
 
     public void Awake()
     {
+        instance = this;
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>(); // 최초 Animator 참조
         renders = GetComponentsInChildren<Renderer>();
@@ -395,11 +399,18 @@ public class Player : MonoBehaviour
 
                 Invoke("FindWeapons", 0.1f);
             }
-        }
-        if (interation && nearObject.name == "Portal")
-        {
-            Portal portal = nearObject.GetComponent<Portal>();
-            portal.NextStage("SampleMap");
+
+            if (nearObject.name == "Portal")
+            {
+                Portal portal = nearObject.GetComponent<Portal>();
+                portal.NextStage("SampleMap");
+            }
+
+            if (nearObject.name == "GameTriger" && nearObject.GetComponent<GamblingManger>().GameCnt<2)
+            {
+                GamblingManger gambling = nearObject.GetComponent<GamblingManger>();
+                gambling.GameUI.SetActive(true);
+            }
         }
     }
 
