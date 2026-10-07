@@ -1198,6 +1198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2fb0ea7d898488a80fdd50cccecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 2414940857110661781, guid: 6ca6c559288e2ac4fb25fc902660560b, type: 3}
   enemyType: 2
   maxHealth: 80
   curHealth: 80

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EntryChecker : MonoBehaviour
 {
-    StageManager stageManger;
+    RoomManager RoomManger;
 
     private void Awake()
     {
-        stageManger = GetComponentInParent<StageManager>();
+        RoomManger = GetComponentInParent<RoomManager>();
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && stageManger.isCleared == false)
+        if (other.CompareTag("Player") && RoomManger.isCleared == false)
         {
-            stageManger.startStage();
+            RoomManger.startRoom();
         }
     }
 }

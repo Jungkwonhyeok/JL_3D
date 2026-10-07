@@ -101,8 +101,12 @@ MonoBehaviour:
   rate: 1.5
   maxAmmo: 1
   curAmmo: 1
+  isShield: 0
   meleeArea: {fileID: 0}
+  meleeAura: {fileID: 0}
+  shieldAura: {fileID: 0}
   trailEffect: {fileID: 0}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 1739394916885114082}
   bullet: {fileID: 4242913206948407304, guid: fd1e3f2121039e04995c72c0cc936186, type: 3}
 --- !u!1 &138317296889395029
@@ -1279,8 +1283,12 @@ MonoBehaviour:
   rate: 1.2
   maxAmmo: 1
   curAmmo: 1
+  isShield: 0
   meleeArea: {fileID: 0}
+  meleeAura: {fileID: 0}
+  shieldAura: {fileID: 0}
   trailEffect: {fileID: 0}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 1739394916885114082}
   bullet: {fileID: 1810854330451138751, guid: 2cc39290f2bc01449be9751f9b6c2fdb, type: 3}
 --- !u!1 &4766265147147671575
@@ -1651,8 +1659,12 @@ MonoBehaviour:
   rate: 1
   maxAmmo: 1
   curAmmo: 1
+  isShield: 0
   meleeArea: {fileID: 0}
+  meleeAura: {fileID: 0}
+  shieldAura: {fileID: 0}
   trailEffect: {fileID: 0}
+  shieldArea: {fileID: 0}
   bulletPos: {fileID: 1739394916885114082}
   bullet: {fileID: 3093350269195134270, guid: f7f4f30870b2fca4aa0676c75e7ce57f, type: 3}
 --- !u!1 &6880422455321033516

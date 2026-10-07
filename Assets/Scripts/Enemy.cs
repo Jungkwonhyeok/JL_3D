@@ -29,19 +29,20 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     Animator anim;
     Player player;
-    StageManager stageManger;
+    RoomManager RoomManger;
 
     float hitCool = 1f; // 마법 영역에서 몇초에 1번씩 데미지가 들어 오는지 정
     float hitDelay = 1f; // 마법 영역에서 데미지가 들어오고 얼마나 지났는지 저장하는 변수
     void Awake()
     {
+        Target = GameObject.Find("Player").transform;
         rigid = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         renders = GetComponentsInChildren<Renderer>();
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         player = Target.GetComponent<Player>();
-        stageManger = GetComponentInParent<StageManager>();
+        RoomManger = GetComponentInParent<RoomManager>();
     }
 
     public void ChaseStart() // 추적 시작하는 함수
@@ -154,7 +155,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isDead || !stageManger.isPlayerInStage)
+        if (isDead || !RoomManger.isPlayerInRoom)
             return;
 
         if (other.tag == "Melee") //근접무기와 충돌하면 무기 데미지 만큼 현재 체력을 깎는다
@@ -243,7 +244,7 @@ public class Enemy : MonoBehaviour
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse); //넉백 시킴
 
-            stageManger.OnEnemyDie();
+            RoomManger.OnEnemyDie();
 
             Instantiate(coin, transform.position, transform.rotation);
 

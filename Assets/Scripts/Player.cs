@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public class HeroChange // 캐릭터 교체에 사용되는 데이터 클래스 (프리팹 묶음용)
@@ -50,6 +46,7 @@ public class Player : MonoBehaviour
     bool isReload; // 재장전 중 여부
     bool isBorder; // 벽에 막혀 있는지 여부
     bool isDamage; //적에게 공격 당하고 있는지 여부
+    bool isSpawning;
 
     Vector3 move;
     Vector3 dodge;
@@ -69,12 +66,18 @@ public class Player : MonoBehaviour
     public HeroChange HeroChanges;
     public int SaveitemValue; // 현재 선택된 캐릭터(무기) 인덱스 저장용
 
+    public int curStage;
+    public Transform SpawnPoint;
     public void Awake()
     {
         instance = this;
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>(); // 최초 Animator 참조
         renders = GetComponentsInChildren<Renderer>();
+
+        DontDestroyOnLoad(gameObject);
+
+        StartCoroutine("SetSpawnPoint");
     }
 
     void OnTransformChildrenChanged() //캐릭터가 교체 됐을 떄 null 방지
@@ -84,6 +87,8 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
+        if (isSpawning)
+            return;
         GetInput();
         Move();
         Turn();
@@ -96,8 +101,7 @@ public class Player : MonoBehaviour
         LevelUp();
         Buy();
     }
-
-    public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
+	public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
 
     {
         List<GameObject> weaponList = new List<GameObject>();
@@ -188,7 +192,8 @@ public class Player : MonoBehaviour
         if (equipWeapon == null) 
         {
             fireDelay = 10;
-            return;
+			isFireReady = true;
+			return;
         }
 
         // 공격 쿨타임 계산
@@ -403,16 +408,35 @@ public class Player : MonoBehaviour
             if (nearObject.name == "Portal")
             {
                 Portal portal = nearObject.GetComponent<Portal>();
-                portal.NextStage("SampleMap");
-            }
+                curStage++;
+                portal.NextStage(curStage);
+                StartCoroutine("SetSpawnPoint");
+			}
 
-            if (nearObject.name == "GameTriger" && nearObject.GetComponent<GamblingManger>().GameCnt<2)
+            if (nearObject.name == "GameTriger" && !nearObject.GetComponent<MiniGameManager>().isPlayGame)
             {
-                GamblingManger gambling = nearObject.GetComponent<GamblingManger>();
-                gambling.GameUI.SetActive(true);
+                MiniGameManager MiniGame = nearObject.GetComponent<MiniGameManager>();
+                MiniGame.GameUI.SetActive(true);
+                MiniGame.GameStart();
             }
         }
     }
+
+    IEnumerator SetSpawnPoint()
+    {
+        yield return new WaitForSeconds(0.01f);
+        SpawnPoint = GameObject.FindWithTag("SpawnPoint").transform;
+        gameObject.transform.position = SpawnPoint.position;
+        gameObject.transform.rotation = SpawnPoint.rotation;
+
+        isSpawning = true;
+        anim.SetTrigger("isSpawn");
+
+		yield return new WaitForSeconds(1.5f);
+        isSpawning = false;
+
+        followCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+	}
 
     void Buy()
     {

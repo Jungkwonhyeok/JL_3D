@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public class Portal : MonoBehaviour
 {
@@ -32,8 +29,8 @@ public class Portal : MonoBehaviour
 
     }
 
-    public void NextStage(string stageName)
+    public void NextStage(int num)
     {
-        SceneManager.LoadScene(stageName);
-    }
+		SceneManager.LoadScene(num);
+	}
 }

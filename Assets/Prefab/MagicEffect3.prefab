@@ -19616,7 +19616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1026f737962611840b3e80b736ad69ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 30
+  isMelee: 0
   Explosion: {fileID: 0}
 --- !u!1 &2098058956177364209
 GameObject:
