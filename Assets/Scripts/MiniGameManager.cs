@@ -72,8 +72,11 @@ public class MiniGameManager : MonoBehaviour
     }
     public void OnClickClose()
     {
-        if(!isPlayGame)
+        if (!isPlayGame)
+        {
             GameUI.SetActive(false);
+            player.onMiniGame = false;
+        }
     }
 
     public void OnClickCard(int i)
@@ -115,6 +118,7 @@ public class MiniGameManager : MonoBehaviour
     void GameClose()
     {
         GameUI.SetActive(false);
+        player.onMiniGame = false;
     }
 
     public void OnclickHeroBtn(int num)
@@ -131,6 +135,8 @@ public class MiniGameManager : MonoBehaviour
 
     public void OnClickokBtn()
     {
+        if (Player.instance.hasWeapons[Heroindex] == true)
+            Player.instance.exp = 100;
         for (int i = 0; i < player.hasWeapons.Length; i++)
         {
             player.hasWeapons[i] = false;

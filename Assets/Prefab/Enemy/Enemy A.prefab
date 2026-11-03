@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1026f737962611840b3e80b736ad69ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 10
   isMelee: 1
   Explosion: {fileID: 0}
 --- !u!1 &2304629032483493920
@@ -1419,7 +1419,7 @@ Transform:
   m_GameObject: {fileID: 5779741539431419680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: 1, z: -6.08}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1490,9 +1490,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 626359945770836001, guid: 6d6d351d7b8d3fd4b959a43ad1bbf273, type: 3}
   enemyType: 0
-  maxHealth: 50
-  curHealth: 50
-  Eexp: 0
+  maxHealth: 15
+  curHealth: 15
+  Eexp: 10
   Target: {fileID: 0}
   meleeArea: {fileID: 866308435265076828}
   bullet: {fileID: 0}

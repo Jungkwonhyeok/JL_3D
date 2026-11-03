@@ -7,6 +7,7 @@ public class RoomManager : MonoBehaviour
     public GameObject[] Rewards;
     public GameObject[] curRoomEnemys;
     public GameObject[] exitGates;
+    public GameObject ClearPortal;
 
     public Transform RewardPos;
     public int curEnemyCount;
@@ -28,12 +29,19 @@ public class RoomManager : MonoBehaviour
         
         foreach(GameObject Enemys in curRoomEnemys)
         {
+            if(Enemys.GetComponent<Enemy>() == null)
+            {
+                Enemys.GetComponent<Boss>().ChaseStart();
+                return;
+            }
             Enemys.GetComponent<Enemy>().ChaseStart();
         }
     }
 
     public void OnEnemyDie()
     {
+        if (gameObject.name == "BossRoom")
+            return;
         curEnemyCount--;
 
         if(curEnemyCount == 0)
@@ -46,6 +54,27 @@ public class RoomManager : MonoBehaviour
 
             RewardsSpawn();
         }
+    }
+
+    public void OnBossDie()
+    {
+        curEnemyCount--;
+
+        if (curEnemyCount == 0)
+        {
+            foreach (GameObject Gates in exitGates)
+            {
+                Gates.SetActive(false);
+            }
+            isCleared = true;
+
+            PortalSpawn();
+        }
+    }
+
+    void PortalSpawn()
+    {
+        ClearPortal.SetActive(true);
     }
 
     void RewardsSpawn()

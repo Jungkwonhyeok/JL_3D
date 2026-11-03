@@ -52,6 +52,13 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
+        if (Player.instance.isStop)
+        {
+             nav.isStopped = true;      // 에이전트 이동 정지
+             nav.velocity = Vector3.zero; // 남은 관성 제거
+             return;
+        }
+
         if (nav.enabled) //nav가 활성화 되어있으면
         {
             nav.SetDestination(Target.position); //추적 할 목표물 위치 정하기
@@ -149,6 +156,8 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Player.instance.isStop)
+            return;
         Targerting();
         FreezVelocity();
     }
@@ -169,12 +178,14 @@ public class Enemy : MonoBehaviour
 
             StartCoroutine(OnDamage(reactVec));
         }
-        else if (other.tag == "Bullet" || other.tag == "FireBall") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
+        else if (other.tag == "Bullet" || other.tag == "FireBall" || other.tag == "MagicArrow") //총알과 충돌하면 총알 데미지 만큼 현재 체력을 깎는다
         {
             Bullet bullet = other.GetComponent<Bullet>();
             curHealth -= bullet.damage;
             Vector3 reactVec = transform.position - other.transform.position; //현재 위치에 피격 위치를 뺴서 반작용 방향 구하기
-            Destroy(other.gameObject);
+
+            if(other.tag != "MagicArrow")
+                Destroy(other.gameObject);
 
             if(curHealth <= 0)
                 isDead = true;
@@ -234,6 +245,7 @@ public class Enemy : MonoBehaviour
             if (meleeArea != null)
                 meleeArea.enabled = false;
             player.exp += Eexp;
+            player.Killcnt++;
             gameObject.layer = 11; // 레이어를 EnemyDead로 바꿈
             isChase = false;
             nav.enabled = false; //근접 공격 범위 비활성화

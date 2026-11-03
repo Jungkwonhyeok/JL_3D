@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  value: 10
+  value: 15
 --- !u!1001 &1240113041738978125
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -36,10 +34,17 @@ public class Weapon : MonoBehaviour
 
             if(player.level >= 3 && player.SaveitemValue == 0)
                 StartCoroutine("SwingShot"); //원거리 공격 코루틴 실행
+            else if (player.level >= 3 && player.SaveitemValue == 3)
+                StartCoroutine("StoneAtteck"); //원거리 공격 코루틴 실행
         }
         else if(type == Type.Range && curAmmo > 0)
         {
             curAmmo--;
+            if (gameObject.name == "crossBow")
+            {
+                StartCoroutine("MultiShot");
+                return;
+            }
             StartCoroutine("Shot"); //원거리 공격 코루틴 실행
         }
         else if (type == Type.Magic)
@@ -59,6 +64,7 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Swing() // 근접 공격 시 판정과 이펙트를 제어하는 코루틴
     {
+
         // 일정 시간 후 공격 판정과 이펙트 활성화
         yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = true;
@@ -79,7 +85,18 @@ public class Weapon : MonoBehaviour
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         bulletRigid.velocity = bulletPos.forward * 50; //특정위치 기준 앞으로 50만큼 속도를 더해줘라
 
+        yield return null;
+    }
 
+    IEnumerator MultiShot()
+    {
+        for (int i = -1; i <= 1; i++)   // -1, 0, 1 → 3발
+        {
+            float angle = bulletPos.eulerAngles.y + i * 30;   // 왼쪽 30도, 정면, 오른쪽 30도
+
+            GameObject b = Instantiate(bullet, bulletPos.position, Quaternion.Euler(90, angle, 0));   // X는 90 고정
+            b.GetComponent<Rigidbody>().velocity = Quaternion.Euler(0, angle, 0) * Vector3.forward * 50;   // 그 방향으로 날림
+        }
         yield return null;
     }
 
@@ -138,5 +155,25 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         trailEffect.SetActive(false);
         Destroy (intantBullet);
+    }
+
+    IEnumerator StoneAtteck() //근거리 무기로 원거리 공격
+    {
+        GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation); //특정 위치에 Bullet소환
+        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
+        Destroy(intantBullet,0.9f);
+
+        // 일정 시간 후 공격 판정과 이펙트 활성화
+        yield return new WaitForSeconds(0.3f);
+        meleeArea.enabled = true;
+        trailEffect.SetActive(true);
+
+        // 공격 판정 유지 시간 종료
+        yield return new WaitForSeconds(0.2f);
+        meleeArea.enabled = false;
+
+        // 공격 이펙트 종료
+        yield return new WaitForSeconds(0.3f);
+        trailEffect.SetActive(false);
     }
 }

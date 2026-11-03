@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class HeroChange // 캐릭터 교체에 사용되는 데이터 클래스 (프리팹 묶음용)
@@ -28,6 +30,10 @@ public class Player : MonoBehaviour
     public int exp; // 경험치
     public int level = 1; // 플레이어 레벨
 
+    public int Killcnt;
+    public float ClearTime;
+    public int Hitcnt;
+
     float moneX;
     float moveZ;
 
@@ -47,6 +53,8 @@ public class Player : MonoBehaviour
     bool isBorder; // 벽에 막혀 있는지 여부
     bool isDamage; //적에게 공격 당하고 있는지 여부
     bool isSpawning;
+    public bool isBossClear = false;
+    public bool isStop;
 
     Vector3 move;
     Vector3 dodge;
@@ -57,7 +65,7 @@ public class Player : MonoBehaviour
 
     public GameObject nearObject; // 근처에 있는 상호작용 대상
     public GameObject nearSItem; // 근처에 있는 상점 아이템
-    Weapon equipWeapon; // 현재 장착 중인 무기 스크립트
+    public Weapon equipWeapon; // 현재 장착 중인 무기 스크립트
     Renderer render; // 무기 렌더러 제어용
     int equipWeaponIndex = -1; // 현재 무기 인덱스 (-1 = 장착 없음)
     float fireDelay; // 공격 딜레이 타이머
@@ -68,6 +76,7 @@ public class Player : MonoBehaviour
 
     public int curStage;
     public Transform SpawnPoint;
+    public bool onMiniGame;
     public void Awake()
     {
         instance = this;
@@ -87,7 +96,12 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (isSpawning)
+        if (isStop)
+            return;
+        if (!isBossClear)
+            ClearTime += Time.deltaTime;
+
+        if (isSpawning || onMiniGame)
             return;
         GetInput();
         Move();
@@ -100,6 +114,7 @@ public class Player : MonoBehaviour
         Interation();
         LevelUp();
         Buy();
+        Cheatkey();
     }
 	public void FindWeapons() // 캐릭터 교체 후 무기 배열을 다시 구성하는 함수
 
@@ -236,10 +251,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ReloadOut() // 재장전 완료 처리
+    void ReloadOut()
     {
-        int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
-        equipWeapon.curAmmo = reAmmo;
+        int need = equipWeapon.maxAmmo - equipWeapon.curAmmo;   // 채워야 하는 양
+        int reAmmo = ammo < need ? ammo : need;                 // 가방에 있는 만큼만
+
+        equipWeapon.curAmmo += reAmmo;
         ammo -= reAmmo;
         isReload = false;
     }
@@ -259,7 +276,7 @@ public class Player : MonoBehaviour
 
     void DodgeOut() // 회피 종료 후 상태 복구
     {
-        speed *= 0.5f;
+        speed = 10f;
         isDodge = false;
     }
 
@@ -300,23 +317,25 @@ public class Player : MonoBehaviour
                 case 1: // 도적
                     if (swap1)
                     {
-                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
                         equipWeaponIndex = 0;
+                        GameObject.Find("Button").GetComponent<UI>().OnBulletUI();
                     }
                     if (swap2)
                     {
                         if (level == 1 || level == 2)
                             return;
 
-                        weaponIndex = 2;
+                        weaponIndex = 3;
                         equipWeaponIndex = 1;
                     }
                     break;
                 case 2: // 궁수
                     if (swap1)
                     {
-                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
                         equipWeaponIndex = 0;
+                        GameObject.Find("Button").GetComponent<UI>().OnBulletUI();
                     }
                     if (swap2)
                     {
@@ -326,14 +345,17 @@ public class Player : MonoBehaviour
                 case 3: // 바바리안
                     if (swap1)
                     {
-                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : 1);
+                        weaponIndex = (level == 1 ? 0 : level == 2 ? 1 : level == 3 ? 2 : 2);
                         equipWeaponIndex = 0;
                     }
                     if (swap2)
                     {
+                        if (equipWeapon != null && equipWeapon.meleeAura != null)
+                            equipWeapon.meleeAura.SetActive(false); // 무기 특수 효과 비활성화(max Lv)
+
                         if (level == 1 || level == 2)
                             return;
-                        weaponIndex = 2;
+                        weaponIndex = 3;
                         equipWeaponIndex = 1;
                     }
                     break;
@@ -362,7 +384,7 @@ public class Player : MonoBehaviour
                 render = equipWeapon.GetComponentInChildren<Renderer>();
                 render.GetComponentInChildren<Renderer>().enabled = true;
 
-                if(level >= 3 && swap1 && SaveitemValue == 0)
+                if(level >= 3 && swap1 && (SaveitemValue == 0 || SaveitemValue == 3))
                     equipWeapon.meleeAura.SetActive(true); // 무기 특수 효과 활성화(max Lv)
                 else if (level >= 3 && swap2 && SaveitemValue == 0)
                     equipWeapon.shieldAura.SetActive(true); // 무기 특수 효과 활성화(max Lv)
@@ -390,6 +412,9 @@ public class Player : MonoBehaviour
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value;
 
+                if (hasWeapons[weaponIndex] == true)
+                    exp = 100;
+
                 for (int i = 0; i < hasWeapons.Length; i++)
                 {
                     hasWeapons[i] = false;
@@ -413,10 +438,17 @@ public class Player : MonoBehaviour
                 StartCoroutine("SetSpawnPoint");
 			}
 
+            if (nearObject.tag == "ClearPortal")
+            {
+                ClearPortal portal = nearObject.GetComponent<ClearPortal>();
+                portal.OnResult();
+            }
+
             if (nearObject.name == "GameTriger" && !nearObject.GetComponent<MiniGameManager>().isPlayGame)
             {
                 MiniGameManager MiniGame = nearObject.GetComponent<MiniGameManager>();
                 MiniGame.GameUI.SetActive(true);
+                onMiniGame = true;
                 MiniGame.GameStart();
             }
         }
@@ -428,6 +460,15 @@ public class Player : MonoBehaviour
         SpawnPoint = GameObject.FindWithTag("SpawnPoint").transform;
         gameObject.transform.position = SpawnPoint.position;
         gameObject.transform.rotation = SpawnPoint.rotation;
+
+        health += 15;
+        if (health > maxHealth)
+            health = maxHealth;
+
+        GameObject.Find("PlayerIcon").GetComponent<UI>().SetPlayerIcon();
+
+        if (hasWeapons[1] == true || hasWeapons[2] == true)
+            GameObject.Find("Button").GetComponent<UI>().OnBulletUI();
 
         isSpawning = true;
         anim.SetTrigger("isSpawn");
@@ -452,6 +493,9 @@ public class Player : MonoBehaviour
                 switch (ItemType)
                 {
                     case ShopItem.Type.Knight:
+                        if (hasWeapons[0] == true)
+                            exp = 100;
+
                         for (int i = 0; i < hasWeapons.Length; i++)
                         {
                             hasWeapons[i] = false;
@@ -467,6 +511,9 @@ public class Player : MonoBehaviour
                         Invoke("FindWeapons", 0.1f);
                         break;
                     case ShopItem.Type.Rogue:
+                        if (hasWeapons[1] == true)
+                            exp = 100;
+
                         for (int i = 0; i < hasWeapons.Length; i++)
                         {
                             hasWeapons[i] = false;
@@ -475,13 +522,16 @@ public class Player : MonoBehaviour
                         hasWeapons[1] = true;
                         SaveitemValue = 1;
 
-                        Destroy(nearSItem);
+                        Destroy(nearSItem.transform.parent.gameObject);
 
                         Change();
 
                         Invoke("FindWeapons", 0.1f);
                         break;
                     case ShopItem.Type.Ranger:
+                        if (hasWeapons[2] == true)
+                            exp = 100;
+
                         for (int i = 0; i < hasWeapons.Length; i++)
                         {
                             hasWeapons[i] = false;
@@ -497,6 +547,9 @@ public class Player : MonoBehaviour
                         Invoke("FindWeapons", 0.1f);
                         break;
                     case ShopItem.Type.Barbarian:
+                        if (hasWeapons[3] == true)
+                            exp = 100;
+
                         for (int i = 0; i < hasWeapons.Length; i++)
                         {
                             hasWeapons[i] = false;
@@ -512,6 +565,9 @@ public class Player : MonoBehaviour
                         Invoke("FindWeapons", 0.1f);
                         break;
                     case ShopItem.Type.Mage:
+                        if (hasWeapons[4] == true)
+                            exp = 100;
+
                         for (int i = 0; i < hasWeapons.Length; i++)
                         {
                             hasWeapons[i] = false;
@@ -527,14 +583,14 @@ public class Player : MonoBehaviour
                         Invoke("FindWeapons", 0.1f);
                         break;
                     case ShopItem.Type.Ammo:
-                        ammo += 10;
+                        ammo += 15;
                         if (ammo > maxAmmo)
                             ammo = maxAmmo;
 
                         Destroy(nearSItem.transform.parent.gameObject);
                         break;
                     case ShopItem.Type.Heart:
-                        health += 10;
+                        health += 30;
                         if (health > maxHealth)
                             health = maxHealth;
 
@@ -547,11 +603,18 @@ public class Player : MonoBehaviour
 
     void LevelUp()
     {
-        if(exp == 100)
+        if(exp >= 100)
         {
             level++;
             exp = 0;
             equipWeaponIndex = -1;
+            if (level > 3)
+            {
+                maxHealth += 20;
+                health += 50;
+                if (health > maxHealth)
+                    health = maxHealth;
+            }
         }
     }
 
@@ -612,25 +675,35 @@ public class Player : MonoBehaviour
         }
         else if (other.tag == "EnemyBullet")
         {
-            if(!isDamage) //공격을 당하지 않았을떄
+            if(!isDamage && other.GetComponent<Bullet>()!=null) //공격을 당하지 않았을떄
             {
                 Bullet enemyBullet = other.GetComponent<Bullet>();
                 health -= enemyBullet.damage;
 
                 if(other.GetComponent<Rigidbody>() != null) //적의 총알을 맞으면 총알 obj 삭제 시켜줌
                     Destroy(other.gameObject);
-
-                StartCoroutine(OnDamage());
             }
+            StartCoroutine(OnDamage());
         }
     }
 
-    IEnumerator OnDamage() //공격 받을때 코루틴
+    public IEnumerator OnDamage() //공격 받을때 코루틴
     {
+        Image Hit = GameObject.Find("Hit").GetComponent<Image>();
         isDamage = true;
-        foreach(Renderer r in renders)
+        Hitcnt++;
+        foreach (Renderer r in renders)
         {
             r.material.color = Color.red; //mtr을 빨간색으로 바꿈
+        }
+        Hit.color = Color.white;
+        if (health <= 0)
+        {
+            GameObject GameOver = GameObject.Find("Button").GetComponent<UI>().GameOver;
+
+
+            GameOver.SetActive(true);
+            isStop = true;
         }
 
         yield return new WaitForSeconds(1f);
@@ -640,6 +713,7 @@ public class Player : MonoBehaviour
         {
             r.material.color = Color.white; //mtr을 흰색으로 바꿈
         }
+        Hit.color = Color.clear;
     }
 
     void OnTriggerStay(Collider other)
@@ -673,6 +747,10 @@ public class Player : MonoBehaviour
 
     public void Change() // 보유 무기에 따른 캐릭터 변경
     {
+        GameObject.Find("PlayerIcon").GetComponent<UI>().SetPlayerIcon();
+
+        GameObject.Find("Button").GetComponent<UI>().OffBulletUI();
+
         if (hasWeapons[0] == true)
         {
             HeroChange(0);
@@ -698,6 +776,45 @@ public class Player : MonoBehaviour
         else if (hasWeapons[4] == true)
         {
             HeroChange(4);
+        }
+    }
+    
+    void Cheatkey()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Portal portal = GameObject.Find("Portal").GetComponent<Portal>();
+            curStage++;
+            portal.NextStage(curStage);
+            StartCoroutine("SetSpawnPoint");
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            GameObject MagicRoom = GameObject.Find("MagicRoom").gameObject;
+            gameObject.transform.position = MagicRoom.transform.position;
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            GameObject shop = GameObject.Find("Shop").gameObject;
+            gameObject.transform.position = shop.transform.position;
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            if (GameObject.Find("BossPos").gameObject == null)
+                return;
+
+            GameObject Boss = GameObject.Find("BossPos").gameObject;
+            gameObject.transform.position = Boss.transform.position;
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            if(GameObject.Find("Boss") != null)
+                GameObject.Find("Boss").GetComponent<Boss>().curHealth -= 500;
+        }
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            exp += 100;
+            coin = maxCoin;
         }
     }
 }

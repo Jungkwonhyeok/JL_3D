@@ -5253,7 +5253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 35
+  m_text: 25
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5420,7 +5420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
-  Price: 35
+  Price: 25
   ItemUI: {fileID: 773368567217321704}
 --- !u!1 &6781944671635501461
 GameObject:
@@ -5582,7 +5582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f737eff868620244b769e6dc0b2357c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da983e952a9ecf84887a9e36bd69ad8d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

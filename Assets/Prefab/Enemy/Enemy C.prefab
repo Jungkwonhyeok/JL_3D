@@ -1128,7 +1128,7 @@ Transform:
   m_GameObject: {fileID: 4750717052380532985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4, y: 1, z: 9.7}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1200,9 +1200,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 2414940857110661781, guid: 6ca6c559288e2ac4fb25fc902660560b, type: 3}
   enemyType: 2
-  maxHealth: 80
-  curHealth: 80
-  Eexp: 0
+  maxHealth: 40
+  curHealth: 40
+  Eexp: 15
   Target: {fileID: 0}
   meleeArea: {fileID: 0}
   bullet: {fileID: 6327969108039493901, guid: bb1cdc1ac26e0174ebdb7872747492bf, type: 3}

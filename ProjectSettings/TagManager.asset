@@ -16,6 +16,9 @@ TagManager:
   - EnemyBullet
   - Shield
   - SpawnPoint
+  - Necromancer
+  - ClearPortal
+  - MagicArrow
   layers:
   - Default
   - TransparentFX
